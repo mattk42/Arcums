@@ -1,0 +1,41 @@
+/* -------------------------------------------------------------
+ * CSS Hacks for IE
+ * -------------------------------------------------------------
+ *   Fun time!  Making the website look close to the same in IE */
+
+h1 { left: 20px; }
+
+	#header {
+		height: 130px;
+	}
+	
+		#showBanner {
+			left: 500px;
+		}	
+	
+			#nav ul {
+  			margin: 0 0 0 95px;
+			}
+
+	#inner {
+	  margin-top: 0px;
+	}
+
+	#center {
+		padding-top: 12px;
+	}
+	
+		.bottom {
+			position: relative;
+			top: -17px;
+			background: url(/images/br.gif) no-repeat top right;
+		}
+
+	.cornerBottomRight {
+		display: inline !important;
+	 	margin-top: -41px; 
+		float: right;
+		width: 16px;
+		height: 17px;
+		background: url(/images/br.gif) no-repeat;
+	}

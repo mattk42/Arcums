@@ -1,0 +1,12 @@
+Schedule Page
+User management system
+Portal management
+clean up all code
+	check for mysql_real_escape string
+	move everything to single config
+	condense
+	remove unescesary code
+refactor
+Generalize theme
+
+

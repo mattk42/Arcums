@@ -1,0 +1,11 @@
+<asx version = "3.0">
+  <title>RADIO X</title>
+  <abstract>WUPX Marquette</abstract>
+
+  <entry>
+    <title>WUPX 91.5</title>
+    <abstract>WUPX Marquette</abstract>
+    <ref href = "http://wupx5.nmu.edu:8000/" />
+  </entry>
+
+</asx>

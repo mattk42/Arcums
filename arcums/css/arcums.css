@@ -1,0 +1,257 @@
+@charset "utf-8";
+/* CSS Document */
+body {
+	padding: 0;
+	margin: 0;
+	background-image:url(../images/arcumsbg.png);
+	background-repeat:repeat-x;
+	background-color:#003158;
+font-family: futura;
+	}
+.bottombar {
+	height: 18px;
+	width: 730px;
+	color: #ffffff;
+	padding-top: 4px;
+	padding-right: 4px;
+	background-image:url(../images/bottombar.png);
+}
+#topbar {
+	padding: 0;
+	margin: 0;
+	width: 100%;
+	position:absolute;
+	height: 80px;
+	background-image:url(../images/topbg.png);
+	}
+.login {
+		font-size: 13px;
+	}
+#topbarmenupast {
+	padding: 0;
+	margin: 0;
+	top: 13px;
+	margin-left: 250px;
+	position:absolute;
+	font-weight: bold;
+	}
+#topbarmenuother {
+	padding: 0;
+	margin: 0;
+	top: 5px;
+	margin-left: 225px;
+	position:absolute;
+	font-weight: bold;
+	}
+
+.eventtablemain {
+        font-family: Geneva, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        width: 400px;
+        background-color: #000000;
+        color: #ffffff;
+        spacing: 0px;
+        padding: 0px;
+}
+.addtablemain {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	width: 730px;
+	background-color: #000000;
+	color: #ffffff;
+	spacing: 0px;
+	padding: 0px;
+}
+.reqtablemain {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 10px;
+	width: 400px;
+	background-color: #FFFFFF;
+	color: #000000;
+	spacing: 0px;
+	padding: 0px;
+}
+.catalogtablemain {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	width: 730px;
+	background-color: #000000;
+	color: #ffffff;
+	spacing: 0px;
+	padding: 0px;
+}
+.searchbox {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 12px;
+	width: 330px;
+	background-color: #000000;
+	color: #ffffff;
+	spacing: 0px;
+	padding: 0px;
+}
+
+.chooseadate {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	color: #ffffff;
+
+}
+
+.textme {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	color: #ffffff;
+}
+
+.playlist {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	width: 730px;
+}
+
+.lookupplays {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	width: 95%;
+}
+
+.register {
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-weight: bold;
+	font-size: 13px;
+	width: 730px;
+	color: #ffffff;
+}
+
+.headers {
+	background-image:url(../images/buttons.png);
+	color: #ffffff;
+	font-weight: bold;
+	height:20px;
+	}
+
+.edittable {
+	background-image:url(../images/editbg.jpg);
+	color: #ffffff;
+	font-weight: bold;
+	}
+
+th {
+	background-color:#000000;
+	color: #ffffff;
+}
+
+form {margin: 0px; padding: 0px; display: inline;}
+
+.welcomebar {
+	width: 684px;
+	height: 44px;
+	padding: 5px;
+	color: #ffffff;
+	font-size: 20px;
+	background-image:url(../images/welcomebar.png);
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+.loggedin {
+	color: #ffff00;
+	font-size: 15px;
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	text-align: right;
+}
+.loggedin a:link {
+	color: #c0c0c0;
+}
+.loggedin a:visited {
+	color: #c0c0c0;
+}
+.loggedin a:hover {
+	color: #ff0000;
+}
+.loggedin a:active {
+	color: #c0c0c0;
+}
+
+
+a:link {
+	color: #0000ff;
+}
+a:visited {
+	color: #0000ff;
+}
+a:hover {
+	color: #ff0000;
+}
+a:active {
+	color: #0000ff;
+}
+
+.edit a:link {
+	color: #00FF33;
+}
+.edit a:visited {
+	color: #00FF00;
+}
+.edit a:hover {
+	color: #c0c0c0;
+}
+.edit a:active {
+	color: #00FF00;
+}
+
+.delete a:link {
+	color: #ff0000;
+}
+.delete a:visited {
+	color: #ff0000;
+}
+.delete a:hover {
+	color: #c0c0c0;
+}
+.delete a:active {
+	color: #ff0000;
+}
+.menu a:link {
+	color: #ffff00;
+}
+.menu a:visited {
+	color: #ffff00;
+}
+.menu a:hover {
+	color: #00ff00;
+}
+.menu a:active {
+	color: #ffff00;
+}
+.headers a:link {
+	color: #ffff00;
+}
+.headers a:visited {
+	color: #ffff00;
+}
+.headers a:hover {
+	color: #00ff00;
+}
+.headers a:active {
+	color: #ffff00;
+}
+
+#replacement-2 {
+  width: 61px;
+  height: 16px;
+  margin: 0;
+  border: 0;
+  background: transparent url(../login/images/submit.png) no-repeat center top;
+  overflow: hidden;
+  cursor: pointer; /* hand-shaped cursor */
+  cursor: hand; /* for IE 5.x */
+}
+form>#replacement-2 { /* For non-IE browsers*/
+  height: 0px;
+}
