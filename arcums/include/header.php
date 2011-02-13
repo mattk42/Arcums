@@ -77,6 +77,7 @@ if ($user_info['permissions'] == '2') {
 <tr><td class="headers" align="center">Genre Director Menu: &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
 </td></tr>
 </table>
 ';}
