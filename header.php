@@ -15,7 +15,7 @@
 			<a href='<?php echo $root ?>/index.php'>Home</a>
 			<a href='<?php echo $root ?>/blog/view.php?type=0'>DJ Blog</a>
 			<a href='<?php echo $root ?>/schedule/index.php'>Schedule</a>
-			<a href='<?php echo $root ?>/arcums/alldjs.php'>Djs</a>
+			<a href='<?php echo $root ?>/djs.php'>Djs</a>
 			<a href='<?php echo $root ?>/estaff.php'>Estaff</a>
 			<a href='<?php echo $root ?>/media.php'>Media</a>
 			<a href='<?php echo $root ?>/about.php'>About</a>
