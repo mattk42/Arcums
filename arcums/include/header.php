@@ -1,7 +1,7 @@
 <?php
 echo "
 <div id='topbar'>
-<a href='$root/arcums/playlist/index.php'>	<img src='../images/arcumsheader.png' width='203' height='58' border='0' /></a>
+<a href='$root/arcums/playlist/index.php'>	<img src='$root/arcums/images/arcumsheader.png' width='203' height='58' border='0' /></a>
 </div>
  <div id='topbarmenuother' class='menu'>
 <table><tr><td>
