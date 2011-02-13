@@ -10,7 +10,6 @@ session_start();
 </head>
 
 <body>
-
 <?php
 require ("../../config.php");
 require ("../include/functions.php");
@@ -23,23 +22,15 @@ else {
     require ("../../header.php");
 }
 include ('includes/functions.php');
-echo "<!--";
-require ("../playlist/listeners.php");
-echo "-->";
+include ('../include/stream_functions.php');
+
+
 $page_limit = 20; //how many search results to show per page
 
 $found = false; //whether or not similar artists were found
 
-//error_reporting(0);
+$listeners = getCurrentListeners();
 
-//get listeners for our own server
-
-$main = getCurrentListeners("wupx.nmu.edu", "wupx915", "8000");
-
-//get Listeners for remote server
-//$secondary = getCurrentListeners("wupx5.nmu.edu","r4d10x","8000");
-
-$listeners = $main;
 
 if (isset($_GET['play'])) {
     echo "<center>Played</center>";
@@ -154,7 +145,7 @@ if (isset($_GET['id'])) {
         echo "<input type=\"hidden\" name=\"label\" value=\"$row[6]\">";
         echo "<input type=\"hidden\" name=\"tracknumber\" value=\"$track_row[2]\">";
         echo "<input type=\"hidden\" name=\"trackid\" value=\"$track_row[0]\">";
-        echo "<input type=\"hidden\" name=\"listeners\" value=\"$listeners\"";
+        echo "<input type=\"hidden\" name=\"listeners\" value=\"$listeners\">";
         echo "<input type=\"hidden\" name=\"requested\" value=\"0\">";
         echo "<input type=\"image\" class=\"smallimg\" width=12 src=\"../images/play.png\">";
         echo "</form>";
