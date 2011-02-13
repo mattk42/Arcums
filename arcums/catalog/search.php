@@ -68,9 +68,9 @@ if ($user_info['permissions'] >= 2) {
             echo "Album not found";
         }
         else {
-            
+            //If there is more than one result from the search, show table to choose from.
             if (sizeof($pxml->Items->Item) > 1) {
-                echo "<center><table class='headers' cellpadding='0' border='0' width='800'><tr>";
+                echo "<center><table class='addtablemain' cellpadding='0' border='0' width='800'><tr>";
                 $count = 0;
                 
                 foreach ($pxml->Items->Item as $album) {
@@ -88,7 +88,7 @@ if ($user_info['permissions'] >= 2) {
                         else {
                             $image = '../images/CD.png';
                         }
-                        echo "<td width='400'><center><a href='search.php?UPC=" . $album->ItemAttributes->UPC . "'><img width='200' src='" . $image = $album->LargeImage->URL . "'></a><br>";
+                        echo "<td width='400'><center><a href='search.php?UPC=" . $album->ItemAttributes->UPC . "'><img width='150' src='" . $image = $album->LargeImage->URL . "'></a><br>";
                         echo $album->ItemAttributes->Artist . "<br>" . $album->ItemAttributes->Title . "</center></td>";
                         
                         if ($count % 2 == 0) {
