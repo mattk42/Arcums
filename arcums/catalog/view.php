@@ -11,8 +11,10 @@ session_start();
 
 <body>
 <?php
-require ("../../config.php");
-require ("../include/functions.php");
+require_once ("../../config.php");
+require_once ("../include/functions.php");
+require_once ('../include/catalog_functions.php');
+require_once ('../include/stream_functions.php');
 
 if (isset($_SESSION['dj_logged_in'])) {
     echo '<link href="../css/arcums.css" rel="stylesheet" type="text/css" />';
@@ -21,16 +23,11 @@ if (isset($_SESSION['dj_logged_in'])) {
 else {
     require ("../../header.php");
 }
-include ('includes/functions.php');
-include ('../include/stream_functions.php');
-
-
 $page_limit = 20; //how many search results to show per page
 
 $found = false; //whether or not similar artists were found
 
 $listeners = getCurrentListeners();
-
 
 if (isset($_GET['play'])) {
     echo "<center>Played</center>";
@@ -46,10 +43,22 @@ if (isset($_GET['id'])) {
     $result = mysql_query("SELECT * FROM catalog_albums WHERE id='" . $id . "'");
     $row = mysql_fetch_array($result);
 
-    //Update cache data if out of date
-    
+    //Update cache data if out of data
+    //FIX THIS CODE BEFORE RELEASE! get_similar should be "threaded"!
     if ($row[16] < date('Y-m-d', strtotime('-1 month'))) {
-        passthru("/usr/bin/php5 /var/www/arcums/catalog/get_similar.php '" . $row[5] . "' >> /var/www/arcums/catalog/similar.log 2>&1 &");
+        //passthru("/usr/bin/php5 /var/www/arcums/catalog/get_similar.php '" . $row[5] . "' >> /var/www/arcums/catalog/similar.log 2>&1 &");
+		    $query = "DELETE FROM catalog_similar WHERE artist='$row[5]'";
+		    mysql_query($query) or die(mysql_error());
+		    $similar_xml = get_similar($row[5], 10);
+		    if ($similar_xml) {
+		        foreach ($similar_xml->similarartists->artist as $sartist) {
+		            $art = mysql_real_escape_string($sartist->name);
+		            $query = "INSERT INTO catalog_similar VALUES('$row[5]','$art')" or die(mysql_error());
+		            mysql_query($query) or die(mysql_error());
+		        }
+		    }
+		    $query = "UPDATE catalog_albums SET similar_cache_date=NOW() WHERE artist = '$row[5]'";
+		    mysql_query($query) or die(mysql_error());
     }
     
     if ($row[10] == "" && $row[7] != "") {
@@ -178,8 +187,8 @@ if (isset($_GET['id'])) {
     echo "</td></tr></table></center><br>";
     */
     echo "</td></tr><tr class='headers' align='center'><td align='center' colspan='2'><br><b>Similar Artists</b><br>";
-    $sim_query = "select sim_artist from similar where artist='$row[5]' and sim_artist in (select distinct(artist) from albums)";
-    $res = mysql_query($sim_query) or die("No Similar Artists");
+    $sim_query = "select sim_artist from catalog_similar where artist='$row[5]' and sim_artist in (select distinct(artist) from catalog_albums)";
+    $res = mysql_query($sim_query) or die("Database Error");
     
     if (mysql_num_rows($res) > 0) {
         
@@ -206,7 +215,7 @@ else {
     
     if (isset($_GET['letter'])) {
         $letter = mysql_real_escape_String($_GET['letter']);
-        $total_query = mysql_query("SELECT * FROM albums WHERE artist LIKE '" . $letter . "%'");
+        $total_query = mysql_query("SELECT * FROM catalog_albums WHERE artist LIKE '" . $letter . "%'");
         $total = mysql_num_rows($total_query);
         
         if (isset($_GET['start'])) {
@@ -215,7 +224,7 @@ else {
         else {
             $start = 0;
         }
-        $album_query = mysql_query("SELECT * FROM catalog_albums WHERE artist LIKE '" . $letter . "%' ORDER BY artist ASC LIMIT " . $start . "," . $page_limit);
+        $album_query = mysql_query("SELECT * FROM catalog_albums WHERE artist LIKE '" . $letter . "%' ORDER BY artist ASC LIMIT " . $start . "," . $page_limit) or die(mysql_error());
         echo "<table>";
         
         while ($row = mysql_fetch_row($album_query)) {

@@ -16,10 +16,10 @@ require ("../../config.php");
 <?
 
 if (isset($_SESSION['dj_logged_in'])) {
-    require ("../include/header.php");
+    include ("../include/header.php");
     echo '<link href="../css/arcums.css" rel="stylesheet" type="text/css" />';
-    require ("../include/functions.php");
-    include ('includes/functions.php');
+    require_once ("../include/functions.php");
+    require_once ('../include/catalog_functions.php');
 }
 else {
     include ("../../header.php");

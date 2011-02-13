@@ -1,6 +1,7 @@
-Schedule Page
-User management system
-Portal management
+Fix "get_similar" call in catalog/view.php.   Right now it is called via exec.
+Schedule Page - Management, sql tables.
+User management system - CHECK
+Portal management ???
 clean up all code
 	check for mysql_real_escape string and stripslashes
 	move everything to single config
@@ -9,4 +10,5 @@ clean up all code
 refactor
 Generalize theme
 Install Script
+Move audioscrobler key to config.php
 

@@ -15,7 +15,7 @@ session_start();
 require ("../../config.php");
 require ("../include/functions.php");
 require ("../include/header.php");
-require ('includes/config.php');
+require ('../include/config.php');
 echo '<center>';
 
 if (isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2) {

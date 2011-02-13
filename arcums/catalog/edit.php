@@ -13,7 +13,6 @@ session_start();
 require("../include/config.php");
 require("../include/functions.php");
 require("../include/header.php");
-require('includes/config.php');
 echo '<center>';
 if(isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2){
 	if(isset($_GET['id'])){

@@ -15,7 +15,7 @@
 					</div>
 					<br />
 					<div class="sidebarTitle">
-						<h3><a href="/charter.php">Last Played</a></h3>
+						<h3><a href="<?php echo $root?>/charter.php">Last Played</a></h3>
 					</div>
   				<div id="lastPlays" class="sidebar">
 						<?php require "playlists/playlists.php" ?>

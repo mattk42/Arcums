@@ -13,16 +13,16 @@ session_start();
 <body>
 
 <?php
-require ("../../config.php");
-require ("../include/functions.php");
-require ("../include/header.php");
+require_once ("../../config.php");
+require_once ("../include/functions.php");
+include ("../include/header.php");
 echo "<center>";
 
 if ($user_info['permissions'] >= 2) {
+    global $amazon_public_key, $amazon_private_key;
     
     if (isset($_GET['UPC'])) {
-        include ("includes/aws_signed_request.php");
-        include ("includes/functions.php");
+        require_once ("../include/catalog_functions.php");
         $upc = $_GET['UPC'];
 
         //get ready for adding to database
@@ -50,15 +50,13 @@ if ($user_info['permissions'] >= 2) {
         }
 
         //echo $page;
-        $public_key = "AKIAIRXGMW3OVO7DK66Q";
-        $private_key = "h7ygzBVQ0HjQRR471RjJlJBj5zJlEU/0MhpEYe85";
         $pxml = aws_signed_request("com", array(
             "Operation" => "ItemSearch",
             "SearchIndex" => "Music",
             "Keywords" => $upc,
             "ItemPage" => $page,
             "ResponseGroup" => "Large"
-        ) , $public_key, $private_key);
+        ) , $amazon_public_key, $amazon_private_key);
 
         //$pxml = aws_signed_request("com", array("Operation"=>"ItemLookup","ItemId"=>"B000I2IR46","ResponseGroup"=>"Large"), $public_key, $private_key);
         //print_r ($pxml);
@@ -68,7 +66,9 @@ if ($user_info['permissions'] >= 2) {
             echo "Album not found";
         }
         else {
+
             //If there is more than one result from the search, show table to choose from.
+            
             if (sizeof($pxml->Items->Item) > 1) {
                 echo "<center><table class='addtablemain' cellpadding='0' border='0' width='800'><tr>";
                 $count = 0;

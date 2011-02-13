@@ -1,6 +1,6 @@
 <?php
 require("../../header.php");
-require("includes/config.php");
+require("../../config.php");
 
 $albumid = mysql_real_escape_string($_POST["albumid"]);
 $trackid = mysql_real_escape_string($_POST["trackid"]);

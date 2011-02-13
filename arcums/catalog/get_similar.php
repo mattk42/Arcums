@@ -1,19 +1,7 @@
 <?php
 
-require("includes/config.php");
-
-function get_similar($artist, $limit=9999){
-        $url = "http://ws.audioscrobbler.com/2.0/?method=artist.getSimilar&artist=" . urlencode($artist) . "&api_key=f17c8bea37418b85d192dccbb244a9f9&limit=" . $limit;
-        $response = @file_get_contents($url);
-        if(!$response){
-                return false;
-        }
-        else{   
-                $xml = simplexml_load_string($response);
-                return $xml;
-        }
-}
-
+require_once("../../config.php");
+require_once("../include/catalog_functions.php");
 
 if(isset($argv[1])){
         $artist = mysql_real_escape_string($argv[1]);
