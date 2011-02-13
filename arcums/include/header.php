@@ -1,23 +1,21 @@
 <?php
-echo '
-<div id="topbar">
-<a href="http://www.wupx.com/arcums/playlist/index.php">	<img src="../images/arcumsheader.png" width="203" height="58" border="0" /></a>
+echo "
+<div id='topbar'>
+<a href='$root/arcums/playlist/index.php'>	<img src='../images/arcumsheader.png' width='203' height='58' border='0' /></a>
 </div>
-
-
- <div id="topbarmenuother" class="menu">
+ <div id='topbarmenuother' class='menu'>
 <table><tr><td>
-';
+";
 
 $session_username = $_SESSION['username'];
 $query="SELECT DISTINCT date FROM playlist WHERE dj = '$session_username' ORDER by date DESC";
-$result = mysql_query ($query);
-echo '
-<form action="' . $root_url . 'playlist/viewdate.php">
+$result = mysql_query ($query) or die(mysql_error());
+echo "
+<form action='$root/playlist/viewdate.php'>
 <u>Past Playlists</u>
 <br>
-<select name="datelist">
-';
+<select name='datelist'>
+";
 while($datelist=mysql_fetch_array($result)){
 echo "<option value='$datelist[date]'>$datelist[date]</option>";
 }
@@ -30,20 +28,20 @@ echo "</select>
 <?php
 $query="SELECT * FROM djs ORDER by name ASC";
 $result = mysql_query ($query);
-echo '
-<form action="' . $root_url . 'playlist/selectdate.php" method="get">
+echo "
+<form action='$root/playlist/selectdate.php' method='get'>
 <u>Other DJs Playlists</u>
 <br>
-<select name="anotherdj">
-';
+<select name='anotherdj'>
+";
 while($nt=mysql_fetch_array($result)){
 echo "<option value=$nt[username]>$nt[name]</option>";
 }
 echo "</select> <input type=\"submit\" value=\"View\"></form>";
 ?>
 
-&nbsp;&nbsp;&nbsp;<a href="http://www.wupx.com/arcums/playlist/index.php">Playlist</a> | <a href="http://www.wupx.com/arcums/profile/">My Profile</a>
-| <a href="http://www.wupx.com/arcums/downloads/">Record Show</a> | <a href="http://www.wupx.com/arcums/blog/">Blog</a> | <a href="http://www.wupx.com/arcums/catalog/">Catalog</a>
+&nbsp;&nbsp;&nbsp;<a href="<? echo $root;?>/arcums/playlist/index.php">Playlist</a> | <a href="<? echo $root;?>/arcums/profile/">My Profile</a>
+| <a href="<? echo $root;?>/arcums/downloads/">Record Show</a> | <a href="<? echo $root;?>/arcums/blog/">Blog</a> | <a href="<? echo $root;?>/arcums/catalog/">Catalog</a>
 
 
 </div></td></tr></table></div>
@@ -110,7 +108,7 @@ if ($user_info['permissions'] == '4') {
 <a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
 <a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../admin">Administration </a>
+<a href="../user_control.php">User Control</a>&nbsp;&nbsp;&nbsp;&nbsp;
 </td></tr>
 </table>
 ';}

@@ -126,7 +126,7 @@ echo '
 }
 else
 {
-$check_login = mysql_query("SELECT username, encryptpass, id FROM accounts WHERE username = '$username' AND encryptpass = '$encryptpass' LIMIT 1") or die("Database Error (/arcums/index.php, 130)");
+$check_login = mysql_query("SELECT username, encryptpass, id FROM accounts WHERE username = '$username' AND encryptpass = '$encryptpass' AND is_activated=1 LIMIT 1") or die("Database Error (/arcums/index.php, 130)");
 if(mysql_num_rows($check_login) > 0)
 {
 $_SESSION['dj_logged_in'] = 1;
@@ -139,11 +139,18 @@ echo '<meta HTTP-EQUIV="REFRESH" content="0; url=';echo $_SESSION['currentpage']
 }
 else
 {
-echo '
+echo'
 <table width="425" border="0" background="images/errorbg.png" align="center" cellpadding="0" cellspacing="0">
 <tr>
-<td align="center" valign="bottom">
-<img src="images/!.png"> Wrong Password or user doesn\'t exist.
+<td align="center" valign="bottom">';
+$check_login = mysql_query("SELECT username, encryptpass, id FROM accounts WHERE username = '$username' AND encryptpass = '$encryptpass' LIMIT 1") or die("Database Error (/arcums/index.php, 130)");
+if(mysql_num_rows($check_login) > 0){
+	echo '<img src="images/!.png"> User is not activated';
+}
+else{
+	echo '<img src="images/!.png"> Wrong Password or user doesn\'t exist.';
+}
+echo '
 </td>
 </tr>
 </table>

@@ -43,7 +43,15 @@ font-family: futura;
 	position:absolute;
 	font-weight: bold;
 	}
-
+.usertablemain {
+        font-family: Geneva, Arial, Helvetica, sans-serif;
+        font-size: 12px;
+        width: 400px;
+        background-color: #000000;
+        color: #ffffff;
+        spacing: 0px;
+        padding: 0px;
+}
 .eventtablemain {
         font-family: Geneva, Arial, Helvetica, sans-serif;
         font-size: 12px;
