@@ -42,6 +42,8 @@ if (isset($_SESSION['dj_logged_in'])) {
 		<a href="search.php">Add albums from Amazon</a>
 		<br>
 		<a href="add.php">Add album manually</a>
+		<br>
+		<a href="category_manage.php">Manage Categories</a>
 		</center></td></table>
 		<br>';
     }

@@ -2,6 +2,7 @@
 $_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
 require("../../config.php");
 require("../include/functions.php");
+require("../include/stream_functions.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -117,11 +118,7 @@ echo '
 <tr>
 
 <td colspan="5" align="right" >
-&nbsp;&nbsp;&nbsp;Web Listeners: <input readonly="readonly" name="listeners" value="';
-
-require("listeners.php");
-
-echo '" size="4" maxlength="4" type="text" />
+&nbsp;&nbsp;&nbsp;Web Listeners: <input readonly="readonly" name="listeners" value="'. getCurrentListeners() .'" size="4" maxlength="4" type="text" />
 
 
 

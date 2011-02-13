@@ -1,118 +1,106 @@
 <?php
 echo "
-<div id='topbar'>
-<a href='$root/arcums/playlist/index.php'>	<img src='$root/arcums/images/arcumsheader.png' width='203' height='58' border='0' /></a>
-</div>
- <div id='topbarmenuother' class='menu'>
-<table><tr><td>
+	<div id='topbar'>
+	<a href='$root/arcums/playlist/index.php'><img src='$root/arcums/images/arcumsheader.png' width='203' height='58' border='0' /></a>
+	</div>
+	<div id='topbarmenuother' class='menu'>
+	<table><tr><td>
 ";
 
 $session_username = $_SESSION['username'];
-$query="SELECT DISTINCT date FROM playlist WHERE dj = '$session_username' ORDER by date DESC";
-$result = mysql_query ($query) or die(mysql_error());
-echo "
-<form action='$root/playlist/viewdate.php'>
-<u>Past Playlists</u>
-<br>
-<select name='datelist'>
-";
-while($datelist=mysql_fetch_array($result)){
-echo "<option value='$datelist[date]'>$datelist[date]</option>";
+
+//Get playlists for this DJ and shoe select form
+$query = "SELECT DISTINCT date FROM playlist WHERE dj = '$session_username' ORDER by date DESC";
+$result = mysql_query($query) or die(mysql_error());
+echo "<form action='$root/playlist/viewdate.php'><u>Past Playlists</u><br><select name='datelist'>";
+
+while ($datelist = mysql_fetch_array($result)) {
+    echo "<option value='$datelist[date]'>$datelist[date]</option>";
 }
-echo "</select>
-<input type='hidden' name='anotherdj' value='$session_username'>
-<input type=\"submit\" value=\"View\"></form>";
+
+echo "</select><input type='hidden' name='anotherdj' value='$session_username'><input type=\"submit\" value=\"View\"></form>";
 ?></td><td>
 
 
 <?php
-$query="SELECT * FROM djs ORDER by name ASC";
-$result = mysql_query ($query);
+//Show select for other DJs playlist
+$query = "SELECT * FROM djs ORDER by name ASC";
+$result = mysql_query($query);
 echo "
-<form action='$root/playlist/selectdate.php' method='get'>
-<u>Other DJs Playlists</u>
-<br>
-<select name='anotherdj'>
+	<form action='$root/playlist/selectdate.php' method='get'>
+	<u>Other DJs Playlists</u>
+	<br>
+	<select name='anotherdj'>
 ";
-while($nt=mysql_fetch_array($result)){
-echo "<option value=$nt[username]>$nt[name]</option>";
+
+while ($nt = mysql_fetch_array($result)) {
+    echo "<option value=$nt[username]>$nt[name]</option>";
 }
 echo "</select> <input type=\"submit\" value=\"View\"></form>";
 ?>
 
-&nbsp;&nbsp;&nbsp;<a href="<? echo $root;?>/arcums/playlist/index.php">Playlist</a> | <a href="<? echo $root;?>/arcums/profile/">My Profile</a>
-| <a href="<? echo $root;?>/arcums/downloads/">Record Show</a> | <a href="<? echo $root;?>/arcums/blog/">Blog</a> | <a href="<? echo $root;?>/arcums/catalog/">Catalog</a>
+&nbsp;&nbsp;&nbsp;<a href="<? echo $root; ?>/arcums/playlist/index.php">Playlist</a> | <a href="<? echo $root; ?>/arcums/profile/">My Profile</a>
+| <a href="<? echo $root; ?>/arcums/downloads/">Record Show</a> | <a href="<? echo $root; ?>/arcums/blog/">Blog</a> | <a href="<? echo $root; ?>/arcums/catalog/">Catalog</a>
 
 
 </div></td></tr></table></div>
 <br><br><br><br>
 
-<!--
-<table width="735" align="center">
-<tr><td class="headers" align="center">
-Don't forget you can record your show! This is a great way to hear yourself and improve your radio voice. <img src="../images/arrowup.png" height="15" width="20">
-</td></tr></table> -->
-
-
-
 <?php
-
-
 $get_info = mysql_query("SELECT * FROM accounts WHERE username = '$session_username' LIMIT 1");
-if(mysql_num_rows($get_info) > 0)
-{
-$user_info = mysql_fetch_assoc($get_info);
 
+    //PERMISSIONS
+    //1=DJ
+    //2=Genre Director
+    //3=Staff
+    //4=Administrator
 
-//PERMISSIONS
-//1=DJ
-//2=Genre Director
-//3=Staff
-//4=Administrator
-//
-
-if ($user_info['permissions'] == '2') {
-  echo '
-<table width="735" align="center">
-<tr><td class="headers" align="center">Genre Director Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
-</td></tr>
-</table>
-';}
-
-
-if ($user_info['permissions'] == '3') {
-  echo '
-<table width="735" align="center">
-<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../charting/search.php">@sshole Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
-</td></tr>
-</table>
-';}
-
-if ($user_info['permissions'] == '4') {
-  echo '
-<table width="735" align="center">
-<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../charting/search.php">@sshole Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
-<a href="../user_control.php">User Control</a>&nbsp;&nbsp;&nbsp;&nbsp;
-</td></tr>
-</table>
-';}
-
+if (mysql_num_rows($get_info) > 0) {
+    $user_info = mysql_fetch_assoc($get_info);
+    
+    if ($user_info['permissions'] == '2') {
+        echo '
+		<table width="735" align="center">
+		<tr><td class="headers" align="center">Genre Director Menu: &nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td></tr>
+		</table>
+	';
+    }
+    
+    if ($user_info['permissions'] == '3') {
+        echo '
+		<table width="735" align="center">
+		<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td></tr>
+		</table>
+	';
+    }
+    
+    if ($user_info['permissions'] == '4') {
+        echo '
+		<table width="735" align="center">
+		<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="../user_control.php">User Control</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td></tr>
+		</table>
+	';
+    }
 }
 ?>
