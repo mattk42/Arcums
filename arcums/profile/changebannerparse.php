@@ -1,13 +1,14 @@
 <?php 
 session_start(); 
+require_once("../../config.php"); 
+
 header("Cache-control: private"); 
 if (!$_SESSION['username']) { 
-    echo "You're not logged in!"; 
-    include("login.html"); 
+    echo '<div class="headers">&nbsp;&nbsp;You must be logged in to edit your profile. <a class="headers" href="../login/index.php">Go to login page...</a></div>';
     exit(); 
 } 
 $username = $_SESSION['username']; 
-include("../include/config.php"); 
+
 $maxfilesize = 81920; 
 // check if there was a file uploaded 
 if (!is_uploaded_file($_FILES['userbanner']['tmp_name'])) { 
@@ -24,12 +25,12 @@ if (!is_uploaded_file($_FILES['userbanner']['tmp_name'])) {
             unlink($_FILES['userbanner']['tmp_name']); 
         // if it's there, an okay size and type, copy to server and update the banner value in SQL 
         } else { 
-            if ($_SESSION['banner'] != "nonpic.jpg") { 
+            if ($_SESSION['banner'] != "nonpic.jpg" && $_SESSION['banner']!="") { 
                 unlink("banners/".$_SESSION['banner']); 
             } 
             $newname = $_SESSION['username'].$ext; 
             move_uploaded_file($_FILES['userbanner']['tmp_name'],"banners/".$newname); 
-            mysql_query("UPDATE djs SET banner='$newname' WHERE username='$username'") or die (mysql_error()); 
+            mysql_query("UPDATE accounts SET banner='$newname' WHERE username='$username'") or die (mysql_error()); 
             $_SESSION['banner'] = $newname; 
         } 
     } 

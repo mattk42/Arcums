@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -9,20 +12,19 @@
 
 <body>
 
-<?
-session_start();
-require("../include/config.php");
-require("../include/functions.php");
-require("../include/header.php");
-include('includes/config.php');
-include('includes/functions.php');
+<?php
+require_once("../../config.php");
+require_once("../include/functions.php");
+require_once('../include/functions.php');
+include("../include/header.php");
+
 
 	if(isset($_GET['id'])){
 		if($user_info['permissions'] >= 2){
 			if(isset($_GET['confirm'])){
 				$id = mysql_real_escape_string($_GET['id']);
-				$track_removal = "DELETE FROM tracks WHERE album_id='" . $id . "'";
-				$album_removal = "DELETE FROM albums WHERE id='" . $id . "'";
+				$track_removal = "DELETE FROM catalog_tracks WHERE album_id='" . $id . "'";
+				$album_removal = "DELETE FROM catalog_albums WHERE id='" . $id . "'";
 
 				mysql_query($track_removal) or die(mysql_error());
 				mysql_query($album_removal) or die(mysql_error());
