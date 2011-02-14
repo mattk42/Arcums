@@ -1,14 +1,8 @@
 <?php
 	include("../header.php");
 	
-	//used when displaying a specific post
-	$post_number =  mysql_real_escape_string($_GET['post']);
-	//0 = E-Staff, 1 = DJ
-	$type =  mysql_real_escape_string($_GET['type']);
-	//Number of posts to display
-	$limit = mysql_real_escape_string($_GET['limit']);
 	//which post to start on
-	$start = addslashes($_GET['start']);
+	$start = mysql_real_escape_string($_GET['start']);
 
 	//tags that are allowed to be displayed (used with strip_tags)
 	$allowable_post="<b><a><br><br /><strong><sup><sub><p><blockquote><font><img><ol><li><ul><code><cite><em><h1><h2><h3><h4><h5><h6><address><span>";
@@ -46,9 +40,8 @@
 	$count=mysql_num_rows($query);
 
 	$report_id = addslashes($_GET['report']);
-
-	if(!isset($post_number)){
-		$query=mysql_query("SELECT * from blog_posts WHERE hide='0' and type='" . $type ."' ORDER BY post_time DESC LIMIT ". $start .",". $limit  );
+	if(empty($post_number)){
+		$query=mysql_query("SELECT * from blog_posts WHERE hide='0' and type='" . $type ."' ORDER BY post_time DESC LIMIT ". $start .",". $limit  ) or die(mysql_error());
 		while($row = mysql_fetch_array($query)){
 			echo "<br><br>";
 	
@@ -73,7 +66,7 @@
 			}
 	}//end if
        else{
-                $query=mysql_query("Select * from blog_posts where id=" . $post_number);
+                $query=mysql_query("Select * from blog_posts where id=" . $post_number) or die(mysql_error());
                 $row = mysql_fetch_array($query);
                        
 		 //get the name of the dj that posted the post
