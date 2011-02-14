@@ -1,25 +1,15 @@
 <?php
-$DB_Server = "localhost";		
-$DB_Username = "arcums";				 
-$DB_Password = "arcums123";				
-$DB_DBName = "arcums";
-$DB_TBLName = "playlist";				
-$startdate = $_GET['startdate'];
-$enddate = $_GET['enddate'];
+include("../../config.php");
+$startdate = mysql_real_escape_string($_GET['startdate']);
+$enddate = mysql_real_escape_string($_GET['enddate']);
 
-$sql = "SELECT dj,artist, song, label, datetime as date FROM arcums.playlist where date between '$startdate' and '$enddate' UNION SELECT songrights as dj,artist, title as song, label, date_played as date from automation.historylist where automation.historylist.date_played between '$startdate' and '$enddate' order by date";
+$sql = "SELECT dj,artist, song, label, datetime as date FROM arcums.playlist where date between '$startdate' and '$enddate'";
 $Use_Title = 1;
 $now_date = date('m-d-Y H:i');
 $title = "Dump For Table $DB_TBLName from Database $DB_DBName on $now_date";
 
 
-$Connect = @mysql_connect($DB_Server, $DB_Username, $DB_Password)
-	or die("Couldn't connect to MySQL:<br>" . mysql_error() . "<br>" . mysql_errno());
-
-$Db = @mysql_select_db($DB_DBName, $Connect)
-	or die("Couldn't select database:<br>" . mysql_error(). "<br>" . mysql_errno());
-
-$result = @mysql_query($sql,$Connect)
+$result = mysql_query($sql,$Connect)
 	or die("Couldn't execute query:<br>" . mysql_error(). "<br>" . mysql_errno());
 
 if (isset($w) && ($w==1))

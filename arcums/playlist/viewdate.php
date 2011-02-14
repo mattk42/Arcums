@@ -28,8 +28,8 @@ if(username_exists($session_username))
 
 $query2="SELECT name FROM djs WHERE djname = '$anotherdj'";
 $result2 = mysql_query ($query2);
-$anotherdj = $_GET['anotherdj'];
-$getdate = $_GET['datelist'];
+$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
+$getdate = mysql_real_escape_string($_GET['datelist']);
 $query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
 $result = mysql_query ($query);
 
@@ -90,7 +90,7 @@ echo "
 	  </tr>
 ";
 
-$datelist = $_GET['datelist'];
+$datelist = mysql_real_escape_string($_GET['datelist']);
 $playlist = mysql_query("SELECT * FROM playlist WHERE date = '$datelist' AND dj = '$anotherdj' ORDER by auto ASC");
 $numofrows = mysql_num_rows($playlist);
 

@@ -65,7 +65,7 @@ $res = mysql_query("SELECT DISTINCT(name), id FROM catalog_categories ORDER BY n
 while ($row = mysql_fetch_array($res)) {
     echo $row[1];
     
-    if ($row[1] == $_GET['cat']) {
+    if ($row[1] == mysql_real_escape_string($_GET['cat'])) {
         $selected = "SELECTED";
     }
     else {

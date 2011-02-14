@@ -2,11 +2,11 @@
 	include("../header.php");
 	
 	//used when displaying a specific post
-	$post_number =  $_GET['post'];
+	$post_number =  mysql_real_escape_string($_GET['post']);
 	//0 = E-Staff, 1 = DJ
-	$type =  $_GET['type'];
+	$type =  mysql_real_escape_string($_GET['type']);
 	//Number of posts to display
-	$limit = $_GET['limit'];
+	$limit = mysql_real_escape_string($_GET['limit']);
 	//which post to start on
 	$start = addslashes($_GET['start']);
 

@@ -17,7 +17,6 @@ require("../include/header.php");
 echo "<center>";
 if($user_info['permissions'] > 1)
 {
-$link = mysql_connect("localhost", "arcums", "arcums123") or die("Could not connect to database");
 $startdate = filter_input(INPUT_GET, 'startdate', FILTER_SANITIZE_SPECIAL_CHARS);
 $enddate = filter_input(INPUT_GET, 'enddate',FILTER_SANITIZE_SPECIAL_CHARS);
 

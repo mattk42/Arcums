@@ -1,11 +1,7 @@
 <?php
-$DB_Server = "localhost";		//your MySQL Server 
-$DB_Username = "arcums";				 //your MySQL User Name 
-$DB_Password = "arcums123";				//your MySQL Password 
-$DB_DBName = "arcums";				//your MySQL Database Name 
-$DB_TBLName = "playlist";				//your MySQL Table Name 
-$getcatnumber = $_GET['catnumber'];
-$getgenre = $_GET['genre'];
+include("../../config.php");
+$getcatnumber =mysql_real_escape_string($_GET['catnumber']);
+$getgenre = mysql_real_escape_string($_GET['genre']);
 
 $sql = "SELECT artist, album, section, sectionnumber, date, COUNT(sectionnumber) AS timesplayed FROM playlist WHERE section = '$getgenre' AND sectionnumber > $getcatnumber AND date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY section, sectionnumber ORDER BY section ASC, timesplayed DESC";
 $Use_Title = 1;
@@ -13,13 +9,7 @@ $now_date = date('m-d-Y H:i');
 $title = "Dump For Table $DB_TBLName from Database $DB_DBName on $now_date";
 
 
-$Connect = @mysql_connect($DB_Server, $DB_Username, $DB_Password)
-	or die("Couldn't connect to MySQL:<br>" . mysql_error() . "<br>" . mysql_errno());
-
-$Db = @mysql_select_db($DB_DBName, $Connect)
-	or die("Couldn't select database:<br>" . mysql_error(). "<br>" . mysql_errno());
-
-$result = @mysql_query($sql,$Connect)
+$result = mysql_query($sql,$Connect)
 	or die("Couldn't execute query:<br>" . mysql_error(). "<br>" . mysql_errno());
 
 if (isset($w) && ($w==1))

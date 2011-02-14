@@ -18,7 +18,7 @@ include("../include/header.php");
 echo '<center>';
 if(isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2){
 	if(isset($_GET['id'])){
-		$id = $_GET['id'];
+		$id = mysql_real_escape_string($_GET['id']);
 	}
 	else{
 		echo "ID not set";

@@ -12,6 +12,9 @@ Install Script
 Require configs, include headers.  Require_ONCE 
 
 
+find . -type f -exec grep -HPc '= \$_(POST|GET|post|get)\[' {} ';' | sort -t : -k 2 -r  > unescaped
+sed 's/=\ \$\_GET\[\(.*\)];/=\ mysql_real_escape_string\(\$\_GET[\1]);/'
+
 
 DONE
 Move audioscrobler key to config.php

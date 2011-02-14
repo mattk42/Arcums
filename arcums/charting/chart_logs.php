@@ -1,9 +1,6 @@
 
 <?php
-mysql_connect("localhost", "arcums", "arcums123") or die(mysql_error());
-echo "Connected to MySQL<br />";
-mysql_select_db("arcums") or die(mysql_error());
-echo "Connected to Database";
+require_once("../../config.php");
 ?>
 <br><br>
 

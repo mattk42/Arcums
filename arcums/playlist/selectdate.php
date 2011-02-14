@@ -25,7 +25,7 @@ $session_username = $_SESSION['username'];
 if(username_exists($session_username))
 {
 
-$anotherdj = $_GET['anotherdj'];
+$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
 $query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
 $result = mysql_query ($query);
 

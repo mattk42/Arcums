@@ -23,7 +23,7 @@ if ($user_info['permissions'] >= 2) {
     
     if (isset($_GET['UPC'])) {
         require_once ("../include/catalog_functions.php");
-        $upc = $_GET['UPC'];
+        $upc = mysql_real_escape_string($_GET['UPC']);
 
         //get ready for adding to database
         

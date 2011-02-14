@@ -1,6 +1,6 @@
 <?php 
 session_start(); 
-require("../include/config.php");
+require("../../config.php");
 require("../include/functions.php");
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -25,7 +25,6 @@ require("../include/header.php");
 	// 		-- if type=dj&dj=<djname> is supplied, it will return the last 10 songs played for that dj username
 	// 				-- if limit=<number> is supplied, it returns that many songs; default is 10.  Must be between 1 and 25
 
-	$link = mysql_connect("localhost", "arcums", "arcums123") or die("Could not connect to database");
 	$startdate = filter_input(INPUT_GET, 'startdate', FILTER_SANITIZE_SPECIAL_CHARS);
 	$enddate = filter_input(INPUT_GET, 'enddate',FILTER_SANITIZE_SPECIAL_CHARS);
 

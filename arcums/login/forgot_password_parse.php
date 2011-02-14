@@ -1,6 +1,6 @@
 <?php 
 header("Cache-control: private"); 
-include("../include/config.php"); 
+include("../../config.php"); 
 require("../include/functions.php");
 
 
@@ -31,8 +31,8 @@ echo "Your passwords match...<br><br>";
 
 // UPDATE PASSWORD IN MYSQL
                 $encryptpass = md5($_POST['pass1']); 
-				$code = $_POST['code']; 
-				$email = $_POST['email']; 
+				$code = mysql_real_escape_string($_POST['code']); 
+				$email = mysql_real_escape_string($_POST['email']); 
  				$random_confirm_code=md5(uniqid(rand())); 
                 mysql_query("UPDATE djs SET encryptpass='$encryptpass' WHERE confirm_code='$code' AND email='$email' LIMIT 1") or die(mysql_error()); 
                 mysql_query("UPDATE djs SET confirm_code='$random_confirm_code' WHERE confirm_code='$code' AND email='$email' LIMIT 1") or die(mysql_error()); 

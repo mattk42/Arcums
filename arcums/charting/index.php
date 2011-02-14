@@ -2,7 +2,7 @@
 session_start();
 $_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
 require("../../config.php");
-require("../include/functions.php");
+Wrequire("../include/functions.php");
 ?>
 
 
@@ -24,12 +24,12 @@ if(username_exists($session_username))
 require("../include/header.php");
 $query2="SELECT name FROM djs WHERE djname = '$anotherdj'";
 $result2 = mysql_query ($query2);
-$anotherdj = $_GET['anotherdj'];
-$getdate = $_GET['datelist'];
+$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
+$getdate = mysql_real_escape_string($_GET['datelist']);
 $query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
 $result = mysql_query ($query);
-$getcatnumber = $_GET['catnumber'];
-$getgenre = $_GET['genre'];
+$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
+$getgenre = mysql_real_escape_string($_GET['genre']);
 echo "
 <div align=\"center\">
 

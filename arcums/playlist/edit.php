@@ -10,7 +10,7 @@ if (isset($_SESSION['dj_logged_in'])) {
     // further checking...
     
     if (username_exists($session_username)) {
-        $autoget = $_GET['auto'];
+        $autoget = mysql_real_escape_string($_GET['auto']);
         $get_info = mysql_query("SELECT * FROM playlist WHERE auto=$autoget");
         
         if (mysql_num_rows($get_info) > 0) {

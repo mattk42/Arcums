@@ -8,7 +8,7 @@ if (!$_SESSION['username']) {
 } 
 $username = $_SESSION['username']; 
 $password = md5($_POST['pass']); 
-$pass1 = $_POST['pass1']; 
+$pass1 = mysql_real_escape_string($_POST['pass1']); 
 include("../include/config.php"); 
 // start with passwords 
 if (($password) AND ($pass1) AND ($_POST['pass2'])) { 

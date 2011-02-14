@@ -28,13 +28,13 @@ if(username_exists($session_username))
 
 $query2="SELECT name FROM djs WHERE djname = '$anotherdj'";
 $result2 = mysql_query ($query2);
-$anotherdj = $_GET['anotherdj'];
-$getdate = $_GET['datelist'];
+$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
+$getdate = mysql_real_escape_string($_GET['datelist']);
 $query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
 $result = mysql_query ($query);
-$getcatnumber = $_GET['catnumber'];
-$getgenre = $_GET['genre'];
-$getartist = $_GET['theartist'];
+$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
+$getgenre = mysql_real_escape_string($_GET['genre']);
+$getartist = mysql_real_escape_string($_GET['theartist']);
 echo "
 <div align=\"center\">
 
