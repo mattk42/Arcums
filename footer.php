@@ -26,8 +26,6 @@
 					</div>
   				<div id="songRequest" class="sidebar">
 						<ul>
-							<li><img src="/images/icons/phone.gif" width="16" height="16" alt="Phone Icon" style="vertical-align: bottom;" />&nbsp;(906) 227-2348</li>
-							<li><a href="aim:goim?screenname=wupxrequest" style="color: #ddd;"><img src="/images/icons/aim.gif" width="16" height="16" alt="AIM Icon" style="vertical-align: bottom;" />&nbsp;WUPXREQUEST</a></li>
 						</ul>
 					</div>
 	<br />
@@ -56,7 +54,7 @@
 </div>
 
 <div id="footer">
-	<div class="content"><span style="float: left;"><a href="/contact.php">Contact Us</a>&nbsp;/&nbsp;<a href="/about.php">About WUPX</a></span><strong>Find us on:</strong>&nbsp;&nbsp;<a href="http://nmu.facebook.com/group.php?gid=2202628826">Facebook</a>&nbsp;/&nbsp;<a href="http://www.myspace.com/radiox915">Myspace</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2008 WUPX<img src="/images/small_earl.gif" alt="Earl the Penguin" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
+	<div class="content"><span style="float: left;"><a href="/contact.php">Contact Us</a>&nbsp;/&nbsp;<a href="/about.php">About Us</a></span><strong>Find us on:</strong>&nbsp;&nbsp;<a href="http://nmu.facebook.com/group.php?gid=2202628826">Facebook</a>&nbsp;/&nbsp;<a href="http://www.myspace.com/radiox915">Myspace</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2011 Matthew Knox<img src="/images/small_earl.gif" alt="Earl the Penguin" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
 	<div class="bottom"><span class="cornerBottomLeft" style="display: none;">&nbsp;</span>&nbsp;<span class="cornerBottomRight" style="display: none;">&nbsp;</span></div>
 </div>
 

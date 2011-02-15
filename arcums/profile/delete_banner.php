@@ -1,16 +1,8 @@
 <?php
 session_start();
-$username = $_SESSION['username']; 
-require("../include/config.php");
-
-      $sql = "UPDATE djs SET banner='' WHERE username='$username'";
-      if (@mysql_query($sql)) {
- 			 header( 'location:index.php' );
-      } 
-	  else {
-        echo('<p>Error deleting entry: ' .
-             mysql_error() . '</p>');
-
-      }
-
+require_once ("../../config.php");
+$username = mysql_real_escape_string($_SESSION['username']);
+$sql = "UPDATE accounts SET banner='' WHERE username='$username'";
+mysql_query($sql) or die(mysql_error());
+header('location:index.php');
 ?>

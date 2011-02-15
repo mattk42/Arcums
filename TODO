@@ -12,6 +12,8 @@ Install Script
 Require configs, include headers.  Require_ONCE 
 
 
+fix eregi line 23 of arcums/include/functions.php, deprecated
+
 find . -type f -exec grep -HPc '= \$_(POST|GET|post|get)\[' {} ';' | sort -t : -k 2 -r  > unescaped
 sed 's/=\ \$\_GET\[\(.*\)];/=\ mysql_real_escape_string\(\$\_GET[\1]);/'
 

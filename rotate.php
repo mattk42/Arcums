@@ -1,11 +1,7 @@
 <?php 
 
 include('config.php');
-?>
-<img width="425" height="75" src="<?php echo $root?>/arcums/profile/banners/<?php echo getRandomBanner(); ?>" alt="DJ Show Banner" class="imgBorder" />
-<?php
 
-function getRandomBanner() {
 
 	$query = "SELECT banner FROM accounts WHERE banner != ''";
 
@@ -17,8 +13,12 @@ function getRandomBanner() {
 		$banners[] = $row["banner"];
 	}
 
-	return (sizeof($banners) > 0) ? randomImage($banners) : "";
-}
+	$banner = (sizeof($banners) > 0) ? randomImage($banners) : "";
+	
+	if ($banner!=""){
+		echo '<img width="425" height="75" src="'.$root.'/arcums/profile/banners/'.$banner.'" alt="DJ Show Banner" class="imgBorder" />';
+	}
+
 
 function randomImage($array) {
 	$total = sizeof($array);

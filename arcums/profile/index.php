@@ -332,7 +332,7 @@ Personal Information
                 else {
 
                     // everything is ok, update the DB
-                    mysql_query("UPDATE djs SET email = '$email', bio = '$bio', hideemail = '$hideemail', hideaccount = '$hideaccount', name = '$name', showname = '$showname', showtime = '$showtime', aim = '$aim', yahoo = '$yahoo', msn = '$msn', website = '$website', myspace = '$myspace', major = '$major', djname = '$djname', minor = '$minor', home = '$home', favgenre = '$favgenre', favartist = '$favartist', favcd = '$favcd', favmovie = '$favmovie', showgenre = '$showgenre', showday = '$showday' WHERE username = '$session_username'");
+                    mysql_query("UPDATE accounts SET email = '$email', bio = '$bio', hideemail = '$hideemail', hideaccount = '$hideaccount', name = '$name', showname = '$showname', showtime = '$showtime', aim = '$aim', yahoo = '$yahoo', msn = '$msn', website = '$website', myspace = '$myspace', major = '$major', djname = '$djname', minor = '$minor', home = '$home', favgenre = '$favgenre', favartist = '$favartist', favcd = '$favcd', favmovie = '$favmovie', showgenre = '$showgenre', showday = '$showday' WHERE username = '$session_username'") or die(mysql_error());
                     echo "<div class='headers'>Profile Updated. <a class='headers' href'index.php'>Continue...</a></div>";
                 }
             }

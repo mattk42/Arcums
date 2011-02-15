@@ -3,7 +3,7 @@
 html, body {
   margin: 0; 
   padding: 0; 
-  background: #000;
+  background: #171717;
 }
 
 #container {
@@ -89,9 +89,9 @@ html, body {
 	#content {
 	  position: relative;
 	  display: block;
-	  background: #3c7580;
-	  border-left: 700px solid #363636;
-	  border-right: 50px solid #363636;
+	  background: #183e6f;
+	  border-left: 700px solid #000000;
+	  border-right: 50px solid #000000;
 	  margin-bottom: -11px;
 	}
 
