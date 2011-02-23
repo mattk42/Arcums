@@ -1,8 +1,8 @@
 <?php
 session_start();
 $_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
-require("../../config.php");
-Wrequire("../include/functions.php");
+require_once("../../config.php");
+require_once("../include/functions.php");
 ?>
 
 

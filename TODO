@@ -21,3 +21,11 @@ sed 's/=\ \$\_GET\[\(.*\)];/=\ mysql_real_escape_string\(\$\_GET[\1]);/'
 DONE
 Move audioscrobler key to config.php
 User management system
+
+theme ability
+
+Remove delete capabilities, or multiple users.
+
+Polls
+
+Contests (Texting??)
