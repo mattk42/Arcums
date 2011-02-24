@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 <title>WUPX 91.5 FM Radio X Marquette</title>
 <? include ("config.php") ?>
-<link rel="stylesheet" type="text/css" href="<? echo $root; ?>/css/wupx.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="<?php echo $root; ?>/themes/<?php echo $curtheme;?>/wupx.css" media="screen" />
 
 <div id="container">
   <div id="header">
