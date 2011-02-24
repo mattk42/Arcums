@@ -4,7 +4,7 @@ require("../include/functions.php");
 echo '
 <head>
 <title>ARCUMS 2.0</title>
-<link href="../css/arcums.css" rel="stylesheet" type="text/css" />
+<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 </head>
 ';
 switch($_GET['action'])

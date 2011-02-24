@@ -17,7 +17,7 @@ require ("../../config.php");
 
 if (isset($_SESSION['dj_logged_in'])) {
     include ("../include/header.php");
-    echo '<link href="../css/arcums.css" rel="stylesheet" type="text/css" />';
+    echo '<link href="../../themes/'.$curtheme.'/admin.css" rel="stylesheet" type="text/css" />';
     require_once ("../include/functions.php");
     require_once ('../include/catalog_functions.php');
 }

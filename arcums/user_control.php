@@ -1,4 +1,7 @@
-<link href="css/arcums.css" rel="stylesheet" type="text/css" />
+<?php
+require_once ("../config.php");
+?>
+<link href="../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 <script type="text/javascript">
 function check_match(){
 	var p1=document.forms["passchange"]["password"].value
@@ -13,8 +16,7 @@ function check_match(){
 <?
 
 //TODO: ADD ORDERING, CLEAR GET VARIABLES FROM THE URL
-require_once ("../config.php");
-include ("include/header.php");
+include_once("include/header.php");
 
 function show_table() {
     global $root;

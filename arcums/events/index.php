@@ -10,7 +10,7 @@ require ("../include/header.php");
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php require ("../include/version.php"); ?></title>
-<link href="../css/arcums.css" rel="stylesheet" type="text/css" />
+<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>

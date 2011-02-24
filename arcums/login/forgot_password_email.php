@@ -1,4 +1,4 @@
-<link href="../css/arcums.css" rel="stylesheet" type="text/css" />
+<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 <?php
 require("../include/config.php"); 
 

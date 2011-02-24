@@ -1,0 +1,212 @@
+/* layout.css -- sets up the layout of the page */
+
+html, body {
+  margin: 0; 
+  padding: 0; 
+  background: #171717;
+}
+
+#container {
+  width: 970px;
+  margin: 10px auto;
+}
+
+	#header {
+  	height: 140px;
+  	background: #4a4a4a url(images/headerbg.gif) repeat-x;
+	}
+
+
+  #header h1 {
+	  margin: 0;
+  	position: relative; 
+  	top: 0px; left: 30px;
+  	width: 350px; height: 80px;
+  	background: url(images/header.png) no-repeat;
+  }
+
+  #header h1 span { display: none; }
+
+		#showBanner {
+		  display: inline;
+			position: relative; 
+			top: -105px;
+			left: 530px;	
+			width: 425px;
+		}
+	
+		.top { background: url(images/tr.gif) no-repeat top right; }
+	
+		#nav {
+		}
+
+		#nav ul {
+  			margin: 0 0 0 85px;
+			padding: 0 10px 0;
+	    		list-style: none;
+		}
+
+		#nav li {
+			float: left;
+			margin: 0;
+			padding: 0;
+		}
+
+		#nav a {
+			display: inline;
+			padding: 5px 15px;
+		}
+	
+		#nav li.current {
+			background: url(images/navtr.gif) no-repeat center right;
+		}
+					
+		#nav li.current a {
+			padding-left: 17px;
+			color: #000;
+			background: url(images/navtl.gif) no-repeat center left;
+		}
+
+	#footer {
+		margin: 0 auto;
+		width: 970px;
+  	height: 42px;
+  	line-height: 42px;
+  	background: #4a4a4a url(images/footerbg.gif) repeat-x;
+  	border-top: 2px solid #fff;
+  	text-align: right; 
+  	padding: 0;
+	}
+	
+		#footer .content { padding: 0 10px 0 10px; }
+		
+		.bottom { 
+			position: relative;
+			top: -17px;
+			background: url(images/br.gif) no-repeat top right;
+		}
+
+	#content {
+	  position: relative;
+	  display: block;
+	  background: #183e6f;
+	  border-left: 700px solid #000000;
+	  border-right: 50px solid #000000;
+	  margin-bottom: -11px;
+	}
+
+	#inner {
+  	display: block;
+	  margin-left: -700px;
+	  margin-right: -50px;
+	  margin-top: -11px;
+	  padding: 0px;
+	  border-top: 3px solid #e1eb41;
+	}
+
+	#left {
+  	float: left;
+  	position: relative;
+  	width: 700px;
+	  left: 0px;
+	}
+
+		#left .content {
+			padding: 10px;
+		}
+
+	#right {
+  	background: #363636;
+  	float: right;
+  	position: relative;
+  	width: 50px;
+  	right: 0px;
+	}
+
+	#center {
+  	margin-left: 710px;
+  	margin-right: 60px;
+  	position: relative;
+  	display: block;
+  	height: 1%;
+	}
+	
+	#center .content {
+		padding: 0 10px 0;
+	}
+	
+	#center .sidebarTitle {
+		border-bottom: 1px solid #fff;
+	}
+	
+	#center .sidebarTitle h3 {
+		margin: 15px 0 5px;
+		padding: 5px 0 5px;
+		border-top: 1px solid #fff;
+		border-bottom: 1px solid #fff;
+	}	
+
+	#center .sidebar {
+	}
+		
+	#center .sidebar ul {
+		margin: 0;
+		padding: 5px 0 0;
+		list-style: none;
+	}
+			
+	#center .sidebar li {
+		margin: 3px 0;
+		padding: 0;
+	}
+		
+	
+	img.corner {
+		display: inline !important;
+		border: 0;
+	}
+	
+	.cornerBottomLeft {
+		display: inline !important;
+		width: 16px;
+		height: 17px;
+		float: left;
+		background: url(images/bl.gif) no-repeat;
+	}
+
+	.cornerTopLeft {
+		display: inline !important;
+		width: 16px;
+		height: 17px;
+		float: left;
+		background: url(images/tl.gif) no-repeat;
+	}
+	
+	html:first-child .cornerBottomLeft { /* Opera Hack */
+		margin-left: -157px;
+	}
+	
+	.contentStrip {
+  	height: 71px;
+  	background: url(images/csbg.png) repeat-x;
+  	width: 100%;
+	}
+	
+	.contentStripRight{
+		float: right;
+		background: url(images/csr.png) no-repeat;
+		height: 71px;
+		width: 15px;
+	}
+
+	.contentStripLeft{
+		float: left;
+		background: url(images/csl.png) no-repeat;
+		height: 71px;
+		width: 15px;
+	}
+
+	.clear {
+  	clear: both;
+	}
+	

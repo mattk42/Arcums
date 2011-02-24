@@ -1,6 +1,8 @@
-<link href="../css/arcums.css" rel="stylesheet" type="text/css" />
 <?php
 include ("../../config.php");
+?>
+<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
+<?php
 include ("../include/header.php");
 
 function show_table() {

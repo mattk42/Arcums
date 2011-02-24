@@ -1,0 +1,7 @@
+Arcums is an open source application, written in PHP and MySql, designed for managing radio stations.
+The name Arcums stands for "Autmated Radio Catalog and User Management System", but it does a lot more than what the name suggests.
+
+FEATURES:
+User Management: Arcums' user management keeps DJ show information and profile organized for easy display.
+Catalog System: Coupled with the Amazon and SudioScropbbler APIs Arcums' catalog system is designed to help manage a radio stations music catalog.  Adding albums is easy, either by entering the information manually or searching Amazon by keyword or a scanned UPC. While browsing the catalog, Arcum's will display all similar artists (via the AudioScrobbler API) that are available in your catalog as well.
+Blog System: Arcums 

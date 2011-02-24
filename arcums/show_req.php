@@ -1,5 +1,5 @@
 <?php
-echo '<link href="css/arcums.css" rel="stylesheet" type="text/css" />';
+echo '<link href="../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />';
 include ('../config.php');
 $limit = 10;
 $query = "SELECT catalog_albums.artist, catalog_tracks.title, catalog_request.datetime, catalog_albums.id FROM catalog_request,catalog_albums,catalog_tracks WHERE catalog_albums.id=catalog_request.album_id AND catalog_tracks.id=catalog_request.track_id ORDER BY datetime DESC LIMIT $limit";

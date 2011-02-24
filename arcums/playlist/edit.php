@@ -27,7 +27,7 @@ if (isset($_SESSION['dj_logged_in'])) {
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ARCUMS 2.0</title>
-<link href="../css/arcums.css" rel="stylesheet" type="text/css" />
+<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
