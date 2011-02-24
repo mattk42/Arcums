@@ -1,3 +1,4 @@
+<?php require_once "config.php"; ?>
   		  </div>
   		</div>
   		<div id="right">
@@ -54,7 +55,7 @@
 </div>
 
 <div id="footer">
-	<div class="content"><span style="float: left;"><a href="/contact.php">Contact Us</a>&nbsp;/&nbsp;<a href="/about.php">About Us</a></span><strong>Find us on:</strong>&nbsp;&nbsp;<a href="http://nmu.facebook.com/group.php?gid=2202628826">Facebook</a>&nbsp;/&nbsp;<a href="http://www.myspace.com/radiox915">Myspace</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2011 Matthew Knox<img src="/images/small_earl.gif" alt="Earl the Penguin" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
+	<div class="content"><span style="float: left;"><a href="/contact.php">Contact Us</a>&nbsp;/&nbsp;<a href="/about.php">About Us</a></span><strong>Find us on:</strong>&nbsp;&nbsp;<a href="http://nmu.facebook.com/group.php?gid=2202628826">Facebook</a>&nbsp;/&nbsp;<a href="http://www.myspace.com/radiox915">Myspace</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2011 Matthew Knox<img src="<?php echo $root; ?>/themes/<?php echo $curtheme; ?>/images/small_logo.gif" alt="Earl the Penguin" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
 	<div class="bottom"><span class="cornerBottomLeft" style="display: none;">&nbsp;</span>&nbsp;<span class="cornerBottomRight" style="display: none;">&nbsp;</span></div>
 </div>
 
