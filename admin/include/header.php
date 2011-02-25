@@ -1,7 +1,7 @@
 <?php
 echo "
 	<div id='topbar'>
-	<a href='$root/arcums/playlist/index.php'><img src='$root/themes/$curtheme/admin_images/arcumsheader.png' width='203' height='58' border='0' /></a>
+	<a href='$root/admin/playlist/index.php'><img src='$root/themes/$curtheme/admin_images/arcumsheader.png' width='203' height='58' border='0' /></a>
 	</div>
 	<div id='topbarmenuother' class='menu'>
 	<table><tr><td>
@@ -39,8 +39,8 @@ while ($nt = mysql_fetch_array($result)) {
 echo "</select> <input type=\"submit\" value=\"View\"></form>";
 ?>
 
-&nbsp;&nbsp;&nbsp;<a href="<? echo $root; ?>/arcums/playlist/index.php">Playlist</a> | <a href="<? echo $root; ?>/arcums/profile/">My Profile</a>
-| <a href="<? echo $root; ?>/arcums/downloads/">Record Show</a> | <a href="<? echo $root; ?>/arcums/blog/">Blog</a> | <a href="<? echo $root; ?>/arcums/catalog/">Catalog</a>
+&nbsp;&nbsp;&nbsp;<a href="<? echo $root; ?>/admin/playlist/index.php">Playlist</a> | <a href="<? echo $root; ?>/admin/profile/">My Profile</a>
+| <a href="<? echo $root; ?>/admin/downloads/">Record Show</a> | <a href="<? echo $root; ?>/admin/blog/">Blog</a> | <a href="<? echo $root; ?>/admin/catalog/">Catalog</a>
 
 
 </div></td></tr></table></div>

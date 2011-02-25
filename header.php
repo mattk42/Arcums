@@ -3,15 +3,15 @@
 <link rel="stylesheet" type="text/css" href="themes/<?php echo $curtheme; ?>/wupx.css" media="screen" />
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<title>WUPX 91.5 FM Radio X Marquette</title>
-<? include ("config.php") ?>
+<?php require_once("config.php") ?>
+<title><?php echo $stationname; ?></title>
 <link rel="stylesheet" type="text/css" href="<?php echo $root; ?>/themes/<?php echo $curtheme;?>/wupx.css" media="screen" />
 
 <div id="container">
   <div id="header">
 		<div class="top"><span class="cornerTopLeft" style="display: none; vertical-align: top;">&nbsp;</span>&nbsp;</div>
   	
-    <h1><span>Radio X 91.5 FM WUPX</span></h1>
+    <h1><span><?php echo $stationname; ?></span></h1>
   
 <?php
 

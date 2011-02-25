@@ -1,6 +1,6 @@
 <?php
 require("config.php");
-require("arcums/include/functions.php");
+require("admin/include/functions.php");
 //echo some styles to spice it up...
 echo "<h2>E-Staff</h2><br /><a href=\"".$root."/arcums\">E-Staff Login</a><br \><br \>
 ";
@@ -12,11 +12,11 @@ while($row = mysql_fetch_assoc($all_members))
 {
 
 
-echo "<table><tr><td valign=\"top\"><img src=\"$root/arcums/profile/photos/{$row['photo']}\" width=\"125\" height=\"150\"></td>
+echo "<table><tr><td valign=\"top\"><img src=\"$root/admin/profile/photos/{$row['photo']}\" width=\"125\" height=\"150\"></td>
 <td>
 <b>$row[position] - $row[name]</b> 
 <br>
-[<a href='arcums/profile/view_profile.php?member_id=$row[id]'>View Profile</a>]
+[<a href='admin/profile/view_profile.php?member_id=$row[id]'>View Profile</a>]
 ";
 
 echo"<table width=\"250\"><tr><td colspan=\"2\" bgcolor='ffffff'><font color='000000'><b> Office Hours</td></tr></font>";

@@ -1,5 +1,5 @@
 <?php 
 include("header.php");
-include("arcums/profile/stafflist.php"); 
+include("admin/profile/stafflist.php"); 
 include("footer.php"); 
 ?>

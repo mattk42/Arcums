@@ -31,14 +31,13 @@
 					</div>
 	<br />
   				<div class="sidebarTitle">
-						<h3>Podcast</h3>
+						<h3>Podcast <a href="<?php echo $root; ?>/rss/podcast.xml"><img src="<?php echo $root; ?>/themes/<?php echo $curtheme; ?>/images/rss.png" alt="RSS Feed" style="float: center;" /></a></h3>
 					</div>
   				<div id="songRequest" class="sidebar">
 
 
 
-<a href="http://www.wupx.com/rss/podcast.xml"><img src="http://www.wupx.com/images/rss.png" alt="RSS Feed" style="float: center;" /></a>
-<a href="http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewPodcast?id=269188808"><img src="http://www.wupx.com/images/subscribe.png" alt="Subscribe with iTunes" style="float: center;" /></a><br />
+
 <?php include "podcast.php"; ?>
 
 
@@ -55,7 +54,7 @@
 </div>
 
 <div id="footer">
-	<div class="content"><span style="float: left;"><a href="/contact.php">Contact Us</a>&nbsp;/&nbsp;<a href="/about.php">About Us</a></span><strong>Find us on:</strong>&nbsp;&nbsp;<a href="http://nmu.facebook.com/group.php?gid=2202628826">Facebook</a>&nbsp;/&nbsp;<a href="http://www.myspace.com/radiox915">Myspace</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Copyright &copy; 2011 Matthew Knox<img src="<?php echo $root; ?>/themes/<?php echo $curtheme; ?>/images/small_logo.gif" alt="Earl the Penguin" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
+	<div class="content">Copyright &copy; 2011 Matthew Knox<img src="<?php echo $root; ?>/themes/<?php echo $curtheme; ?>/images/small_logo.gif" width="12" height="16" style="vertical-align: middle; margin-left: 5px; margin-bottom: 2px;" /></div>
 	<div class="bottom"><span class="cornerBottomLeft" style="display: none;">&nbsp;</span>&nbsp;<span class="cornerBottomRight" style="display: none;">&nbsp;</span></div>
 </div>
 
