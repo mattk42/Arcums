@@ -5,6 +5,7 @@ require ("../include/functions.php");
 
 if (isset($_SESSION['dj_logged_in'])) {
     $session_username = $_SESSION['username'];
+    $session_id = $_SESSION['djid'];
 
     // further checking...
     
@@ -23,7 +24,7 @@ if (isset($_SESSION['dj_logged_in'])) {
             $label = mysql_real_escape_string($_POST['label']);
             $tracknumber = mysql_real_escape_string($_POST['tracknumber']);
             $listeners = mysql_real_escape_string($_POST['listeners']);
-            mysql_query("INSERT INTO  playlist SET artist = '$artist', song = '$song', album = '$album', label = '$label', section = '$section', sectionnumber = '$sectionnumber', requested = '$requested', listeners = '$listeners', tracknumber = '$tracknumber', date = '$date', time = '$time', dj = '$session_username', datetime='$datetime' ");
+            mysql_query("INSERT INTO  playlist SET artist = '$artist', song = '$song', album = '$album', label = '$label', section = '$section', sectionnumber = '$sectionnumber', requested = '$requested', listeners = '$listeners', tracknumber = '$tracknumber', date = '$date', time = '$time', dj = '$session_username', djid = '$session_id' datetime='$datetime' ");
         }
         else {
             echo 'Could not recent playlists, please start a new one.';

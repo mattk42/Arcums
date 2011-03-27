@@ -5,11 +5,13 @@ require_once("../../config.php");
 function getCurrentListeners(){
 	global $sc_conf;	
 	$total = 0;
-	foreach ($sc_conf as $sc_serv){
-		$host = $sc_serv['host'];
-		$port = $sc_serv['port'];
-		$password = $sc_serv['password'];
-		$total += getStreamListeners($host,$password,$port);
+	if(isset($sc_conf)){
+		foreach ($sc_conf as $sc_serv){
+			$host = $sc_serv['host'];
+			$port = $sc_serv['port'];
+			$password = $sc_serv['password'];
+			$total += getStreamListeners($host,$password,$port);
+		}
 	}
 	return $total;
 }

@@ -127,6 +127,7 @@ if (!isset($_SESSION['dj_logged_in'])) {
                 mysql_query($query) or die("Failed to update last login time");
                 $_SESSION['dj_logged_in'] = 1;
                 $_SESSION['username'] = $username;
+                $_SESSION['djid'] = $row['id'];
                 echo '<meta HTTP-EQUIV="REFRESH" content="0; url=';
                 echo $_SESSION['currentpage'];
                 echo '">';

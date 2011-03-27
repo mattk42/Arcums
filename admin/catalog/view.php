@@ -1,6 +1,5 @@
 <?php
 session_start();
-print_r($_SESSION);
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -79,12 +78,12 @@ if (isset($_GET['id'])) {
     echo '<img width=/"250/" src="' . $row[10] . '"></img><br>';
     
     if (isset($_SESSION['dj_logged_in'])) {
-        echo "<br><a href=report.php?id=" . $id . "><img alt='Report' width='20' src='../images/uhoh.png'></a> ";
+        echo "<br><a href=report.php?id=" . $id . "><img alt='Report' width='20' src='../../themes/$curtheme/admin_images/uhoh.png'></a> ";
     }
     
     if (isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2) {
-        echo " <a href=edit.php?id=" . $id . "><img alt='Edit' width='20' src='../images/edit-icon.png'></a>";
-        echo " <a href=remove.php?id=" . $id . "><img alt='Delete' width='20' src='../images/delete-icon.png'></a>";
+        echo " <a href=edit.php?id=" . $id . "><img alt='Edit' width='20' src='../../themes/$curtheme/admin_images/edit-icon.png'></a>";
+        echo " <a href=remove.php?id=" . $id . "><img alt='Delete' width='20' src='../../themes/$curtheme/admin_images/delete-icon.png'></a>";
         echo "<br>";
     }
     echo '</td><td>';
@@ -157,7 +156,7 @@ if (isset($_GET['id'])) {
         echo "<input type=\"hidden\" name=\"trackid\" value=\"$track_row[0]\">";
         echo "<input type=\"hidden\" name=\"listeners\" value=\"$listeners\">";
         echo "<input type=\"hidden\" name=\"requested\" value=\"0\">";
-        echo "<input type=\"image\" class=\"smallimg\" width=12 src=\"../images/play.png\">";
+        echo "<input type=\"image\" class=\"smallimg\" width=12 src=\"../../themes/$curtheme/admin_images/play.png\">";
         echo "</form>";
         echo "<br>";
     }

@@ -201,11 +201,11 @@ if (isset($_GET['artist']) || isset($_GET['title'])) {
         echo "</td>";
         
         if (isset($_SESSION['dj_logged_in'])) {
-            echo "<td><a href=report.php?id=" . $row['ID'] . "><img alt='Report' width='20' src='../images/uhoh.png'></a> ";
+            echo "<td><a href=report.php?id=" . $row['ID'] . "><img alt='Report' width='20' src='../../themes/$curtheme/admin_images/uhoh.png'></a> ";
             
             if ($user_info['permissions'] >= 2) {
-                echo "<a href=edit.php?id=" . $row['ID'] . "><img alt='Edit' width='20' src='../images/edit-icon.png'></a> ";
-                echo " <a href=remove.php?id=" . $row['ID'] . "><img alt='Delete' width='20' src='../images/delete-icon.png'></a>";
+                echo "<a href=edit.php?id=" . $row['ID'] . "><img alt='Edit' width='20' src='../../themes/$curtheme/admin_images/edit-icon.png'></a> ";
+                echo " <a href=remove.php?id=" . $row['ID'] . "><img alt='Delete' width='20' src='../../themes/$curtheme/admin_images/delete-icon.png'></a>";
             }
             echo "</td>";
             echo "</tr></font>";
