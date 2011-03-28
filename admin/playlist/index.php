@@ -53,6 +53,7 @@ require("../include/header.php");
 if(isset($_SESSION['dj_logged_in']))
 {
 $session_username = $_SESSION['username'];
+$session_dj_id = $_SESSION['djid'];
 // further checking...
 if(username_exists($session_username))
 {
@@ -171,8 +172,11 @@ echo "
 
 	  </tr>
 ";
-$todayis = date('Y-m-d');
-$playlist = mysql_query("SELECT * FROM playlist WHERE dj = '$session_username' AND date = '$todayis' ORDER by auto DESC");
+$todaystart = date('Y-m-d 00:00:00');
+$todayend = date('Y-m-d 23:59:59');
+
+$query = "SELECT * FROM playlist WHERE dj_id = '$session_djid' AND datetime > '$todaystart' AND datetime < '$todayend' ORDER by id DESC";
+$playlist = mysql_query($query) or die(mysql_error());
 $numofrows = mysql_num_rows($playlist);
 
 if(mysql_num_rows($playlist) > 0)

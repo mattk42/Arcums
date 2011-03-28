@@ -6,11 +6,11 @@ echo "
 	<div id='topbarmenuother' class='menu'>
 	<table><tr><td>
 ";
-
 $session_username = $_SESSION['username'];
+$session_djid = $_SESSION['djid'];
 
 //Get playlists for this DJ and shoe select form
-$query = "SELECT DISTINCT date FROM playlist WHERE dj = '$session_username' ORDER by date DESC";
+$query = "SELECT DISTINCT datetime FROM playlist WHERE dj_id = '$session_djid' ORDER by datetime DESC";
 $result = mysql_query($query) or die(mysql_error());
 echo "<form action='$root/playlist/viewdate.php'><u>Past Playlists</u><br><select name='datelist'>";
 
@@ -24,8 +24,8 @@ echo "</select><input type='hidden' name='anotherdj' value='$session_username'><
 
 <?php
 //Show select for other DJs playlist
-$query = "SELECT * FROM djs ORDER by name ASC";
-$result = mysql_query($query);
+$query = "SELECT * FROM accounts ORDER by name ASC";
+$result = mysql_query($query) or die(mysql_error());
 echo "
 	<form action='$root/playlist/selectdate.php' method='get'>
 	<u>Other DJs Playlists</u>
@@ -77,7 +77,6 @@ if (mysql_num_rows($get_info) > 0) {
 		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
@@ -93,7 +92,6 @@ if (mysql_num_rows($get_info) > 0) {
 		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../local_bands/index.php">Local Bands[TESTING]</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;

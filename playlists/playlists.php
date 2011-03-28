@@ -1,5 +1,4 @@
 <?php
-include("../config.php");
 	// Playlists.php
 	// -- this file accepts $_GET input and returns a list of songs from the playlist table
 	// 		-- if nothing is supplied, it returns a generic list of the last 10 songs played

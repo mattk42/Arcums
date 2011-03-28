@@ -4,24 +4,24 @@ require("../../config.php");
 require("../include/functions.php");
 require("../include/header.php");
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php require("../include/version.php"); ?></title>
+<title>ARCUMS 2.0</title>
 <link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
+<body>
 <?php
 echo "<center>";
 if($user_info['permissions'] > 1)
 {
-$startdate = filter_input(INPUT_GET, 'startdate', FILTER_SANITIZE_SPECIAL_CHARS);
-$enddate = filter_input(INPUT_GET, 'enddate',FILTER_SANITIZE_SPECIAL_CHARS);
 
-if($startdate !== false && !empty($startdate) && $enddate !== false && !empty($enddate)){
-	$query = "SELECT dj,artist, song, label, datetime as date FROM arcums.playlist where date between '$startdate' and '$enddate' UNION SELECT songrights as dj,artist, title as song, label, date_played as date from automation.historylist where automation.historylist.date_played between '$startdate' and '$enddate' order by date";
+if(isset($_GET['startdate'])){
+
+	$startdate = date("Y-m-d",strtotime($_GET['startdate']));
+	$enddate = date("Y-m-d",strtotime($_GET['enddate']));
+
+	echo $startdate;
+	$query = "SELECT dj,artist, song, label, datetime as date FROM playlist where date between '$startdate' and '$enddate'";
 	$result = mysql_query($query) or die("Query failed.");
 	
 	echo "<ul>\n";
@@ -37,7 +37,7 @@ echo "<form action='export.php' method='get'>
 
 }
 else{
-echo "This isn't completely done yet. But it can be used to get a accurate chart of what has been played between 2 dates. Enter the dates you wish to look between in the format YYYY-MM-DD and click submit. If you want to export that list to an excell sheet, there is a button at the bottom for that.<br><br>";
+
 echo "<form name='input' action='index.php' method='get'>";
 echo"Start Date = <input type='text' name='startdate' value='$startdate'><br>";
 echo"End Date = <input type='text' name='enddate' value='$enddate'><br>";

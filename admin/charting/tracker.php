@@ -1,6 +1,5 @@
 <?php 
 session_start();
-$_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
 require("../../config.php");
 require("../include/functions.php");
 ?>
@@ -19,37 +18,34 @@ require("../include/header.php");
 
 <?php
 
-if(isset($_SESSION['dj_logged_in']))
-{
+if(isset($_SESSION['dj_logged_in'])){
 $session_username = $_SESSION['username'];
 // further checking...
-if(username_exists($session_username))
-{
-
-$query2="SELECT name FROM djs WHERE djname = '$anotherdj'";
-$result2 = mysql_query ($query2);
-$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
-$getdate = mysql_real_escape_string($_GET['datelist']);
-$query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
-$result = mysql_query ($query);
-$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
-$getgenre = mysql_real_escape_string($_GET['genre']);
-$getartist = mysql_real_escape_string($_GET['theartist']);
-echo "
-<div align=\"center\">
+if(username_exists($session_username)){
+	$query2="SELECT name FROM accounts WHERE djname = '$anotherdj'";
+	$result2 = mysql_query ($query2);
+	$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
+	$getdate = mysql_real_escape_string($_GET['datelist']);
+	$query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
+	$result = mysql_query ($query);
+	$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
+	$getgenre = mysql_real_escape_string($_GET['genre']);
+	$getartist = mysql_real_escape_string($_GET['theartist']);
+	echo "
+	<div align=\"center\">
 
 
-<table class=\"welcomebar\">
-<tr>
-<td class=\"date\">
-Hound Dog Asshole Tracker: 
-";
+	<table class=\"welcomebar\">
+	<tr>
+	<td class=\"date\">
+	Hound Dog Asshole Tracker: 
+	";
 
-if (empty($getartist))
-{
-echo "$getgenre $getcatnumber";
-}else {
-echo "$getartist";
+if (empty($getartist)){
+	echo "$getgenre $getcatnumber";
+}
+else{
+	echo "$getartist";
 }
 
 echo "
@@ -73,17 +69,17 @@ echo "
 <form>
 ";
 
-$query="SELECT genres FROM genres ORDER by genres ASC";
-$result = mysql_query ($query);
+$query="SELECT id,name FROM catalog_categories ORDER by name ASC";
+$result = mysql_query ($query) or die(mysql_error());
 echo "<td><select name=\"genre\">";
 while($nt=mysql_fetch_array($result)){
 echo "<option ";
 
-if($nt['genres'] == $getgenre) { echo "selected"; }
+if($nt[0] == $getgenre) { echo "selected"; }
 
 
 echo "
- value=$nt[genres]>$nt[genres]</option>";
+ value=$nt[0]>$nt[1]</option>";
 }
 echo '</select></td>
   <td><input name="catnumber" type="text" id="catnumber" size="6" maxlength="10" /></td>
@@ -119,11 +115,11 @@ echo "
 
 if (empty($getartist))
 {
-$playlist = mysql_query("SELECT date,time,section,artist,album, sectionnumber,djs.name,djs.email FROM playlist, djs WHERE section = '$getgenre' AND sectionnumber = $getcatnumber AND playlist.dj = djs.username ORDER BY date DESC, TIME DESC LIMIT 10");
+$playlist = mysql_query("SELECT date,time,section,artist,album, sectionnumber,accounts.name,accounts.email FROM playlist, accounts WHERE section = '$getgenre' AND sectionnumber = '$getcatnumber' AND playlist.djid = accounts.id ORDER BY date DESC, TIME DESC LIMIT 10")or die(mysql_error());
 
 }else{
 
-$playlist = mysql_query("SELECT date,time,section,artist,album, sectionnumber,djs.name,djs.email FROM playlist, djs WHERE (artist LIKE '%$getartist%' OR album LIKE '%$getartist%') AND playlist.dj = djs.username ORDER BY date DESC, TIME DESC LIMIT 10");
+$playlist = mysql_query("SELECT date,time,section,artist,album, sectionnumber,accounts.name,accounts.email FROM playlist, accounts WHERE (artist LIKE '%$getartist%' OR album LIKE '%$getartist%') AND playlist.djid = accounts.id ORDER BY date DESC, TIME DESC LIMIT 10") or die(mysql_error());
 }
 
 

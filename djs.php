@@ -37,7 +37,7 @@ $all_members = mysql_query("SELECT * FROM accounts WHERE is_activated=1 AND show
 if (mysql_num_rows($all_members) > 0) {
     
     while ($row = mysql_fetch_assoc($all_members)) {
-        echo "<table><tr><td><img src=\"http://www.wupx.com/arcums/profile/photos/{$row['photo']}\" width=\"75\" height=\"100\"></td><td><b>$row[name] - $row[djname]</b><br />$row[showday] @ $row[showtime]<br />Genre: $row[showgenre]<br />[<a href='http://www.wupx.com/arcums/profile/view_profile.php?member_id=$row[id]'>View Profile</a>] <br /><br /></td></tr></table>";
+        echo "<table><tr><td><img src=\"http://www.wupx.com/arcums/profile/photos/{$row['photo']}\" width=\"75\" height=\"100\"></td><td><b>$row[name] - $row[djname]</b><br />$row[showday] @ $row[showtime]<br />Genre: $row[showgenre]<br />[<a href='$root/admin/profile/view_profile.php?member_id=$row[id]'>View Profile</a>] <br /><br /></td></tr></table>";
     }
 }
 else {

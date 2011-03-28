@@ -1,7 +1,7 @@
-<?php include("../../header.php");?>
 <?php
 session_start();
-require("../include/config.php");
+include("../../header.php");
+require("../../config.php");
 require("../include/functions.php");
 
 //echo some styles to spice it up...
@@ -11,7 +11,7 @@ echo "
 if(isset($_GET['member_id']))
 {
 $member_id = (INT)$_GET['member_id'];
-$member_info = mysql_query("SELECT * FROM djs WHERE is_activated = '1' AND id = '$member_id' LIMIT 1");
+$member_info = mysql_query("SELECT * FROM accounts WHERE is_activated = '1' AND id = '$member_id' LIMIT 1") or die(mysql_error());
 if(mysql_num_rows($member_info) > 0)
 {
 // we can go ahead and assign it to an array because this user exists
