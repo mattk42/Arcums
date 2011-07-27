@@ -7,11 +7,12 @@ if (isset($_POST['dbhost'])) {
 		die("Please go back and fill in all requires fields.");
 	}
 
+mysql_connect($_POST['dbhost'], $_POST['dbuser'], $_POST['dbpass']) or die("Error connecting to MySQL databse: " . mysql_error());
 	echo "<b>Installing:</b><br>";
-	
+
 	//Escape all of the user input.
     $host = mysql_real_escape_string($_POST['dbhost']);
-    $user = mysql_real_escape_string($_POST['dbuser']);
+	$user = mysql_real_escape_string($_POST['dbuser']);
     $pass = mysql_real_escape_string($_POST['dbpass']);
     $db = mysql_real_escape_string($_POST['dbname']);
     $pref = mysql_real_escape_string($_POST['dbpref']);
@@ -27,12 +28,11 @@ if (isset($_POST['dbhost'])) {
 	$sport = mysql_real_escape_string($_POST['sport']);
 	$spass = mysql_real_escape_string($_POST['spass']);
     
-    //Create the DB
-    mysql_connect($host, $db, $user, $pass) or die("Error connecting to MySQL databse: " . mysql_error());
+	//Create the DB
     $create_db_query = "CREATE DATABASE IF NOT EXISTS $db";
     mysql_query($create_db_query) or die("Error Creating Database" . mysql_error());
     echo "DB Created<br>";
-    
+   echo "CREATING TABLES"; 
     //Create the tables
     mysql_select_db($db);
     $create_table_query[] = "CREATE TABLE IF NOT EXISTS `accounts` (
@@ -195,7 +195,7 @@ if (isset($_POST['dbhost'])) {
 								  `album` varchar(45) NOT NULL DEFAULT '',
 								  `listeners` varchar(45) NOT NULL DEFAULT '',
 								  `tracknumber` varchar(45) NOT NULL DEFAULT '',
-								  `djid` varchar(45) NOT NULL DEFAULT '',
+								  `dj_id` varchar(45) NOT NULL DEFAULT '',
 								  `datetime` datetime DEFAULT NULL,
 								  PRIMARY KEY (`auto`)
 								) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=145369 ;";
@@ -305,7 +305,7 @@ else {
 	<b>Database Settings:</b> MySql only<br>
 	Database Server:*<input name='dbhost'><br>
 	Database User:*<input name='dbuser'><br>
-	Database Password:*<input name='dbpass'><br>
+	Database Password:*<input type=password name='dbpass'><br>
 	Databse Name:*<input name='dbname'><br>
 	Table Prefix:*<input name='dbpref'><br><br>
 	<b>Application Settings:</b><br>
