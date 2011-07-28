@@ -86,8 +86,8 @@ if (isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2) {
         $row = mysql_fetch_row($res);
         $cat_num = $row[0];
         $cat_num++;
-        $query = "INSERT INTO albums VALUES('','" . $cat . "','" . $cat_num . "','" . $cat_letter . "','" . $title . "','" . $artist . "','" . $label . "','" . $upc . "','" . $release . "','" . $discs . "','" . $image . "','" . $desc . "','',NOW(),'" . $vinyl . "','" . $user_info['username'] . "[MANUAL_ADD];','')";
-        mysql_query($query) or die("Error Adding Album");
+        $query = "INSERT INTO catalog_albums VALUES('','" . $cat . "','" . $cat_num . "','" . $cat_letter . "','" . $title . "','" . $artist . "','" . $label . "','" . $upc . "','" . $release . "','" . $discs . "','" . $image . "','" . $desc . "','',NOW(),'" . $vinyl . "','" . $user_info['username'] . "[MANUAL_ADD];','')";
+        mysql_query($query) or die("Error Adding Album";
         echo $query;
 
         //get album id

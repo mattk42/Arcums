@@ -1,89 +1,89 @@
-<?php
-session_start();
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
+	<?php
+	session_start();
+	?>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
 
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title><?php require ("../include/version.php"); ?></title>
-</head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title><?php require ("../include/version.php"); ?></title>
+	</head>
 
-<body>
-<?php
-require_once ("../../config.php");
-require_once ("../include/functions.php");
-require_once ('../include/catalog_functions.php');
-require_once ('../include/stream_functions.php');
+	<body>
+	<?php
+	require_once ("../../config.php");
+	require_once ("../include/functions.php");
+	require_once ('../include/catalog_functions.php');
+	require_once ('../include/stream_functions.php');
 
-if (isset($_SESSION['dj_logged_in'])) {
-    echo '<link href="../../themes/'.$curtheme.'/admin.css" rel="stylesheet" type="text/css" />';
-    require ("../include/header.php");
-}
-else {
-    require ("../../header.php");
-}
-$page_limit = 20; //how many search results to show per page
+	if (isset($_SESSION['dj_logged_in'])) {
+	    echo '<link href="'.$root.'/themes/'.$curtheme.'/admin.css" rel="stylesheet" type="text/css" />';
+	    require ("../include/header.php");
+	}
+	else {
+	    require ("../../header.php");
+	}
+	$page_limit = 20; //how many search results to show per page
 
-$found = false; //whether or not similar artists were found
+	$found = false; //whether or not similar artists were found
 
-$listeners = getCurrentListeners();
+	$listeners = getCurrentListeners();
 
-if (isset($_GET['play'])) {
-    echo "<center>Played</center>";
-    addSong($_GET['artist'], $_GET['song'], $_GET['section'], $_GET['sectionnumber'], $_GET['album'], $_GET['label'], $_GET['tracknumber']);
-}
+	if (isset($_GET['play'])) {
+	    echo "<center>Played</center>";
+	    addSong($_GET['artist'], $_GET['song'], $_GET['section'], $_GET['sectionnumber'], $_GET['album'], $_GET['label'], $_GET['tracknumber']);
+	}
 
-if (isset($_GET['sent'])) {
-    echo "<center>Report Sent</center>";
-}
+	if (isset($_GET['sent'])) {
+	    echo "<center>Report Sent</center>";
+	}
 
-if (isset($_GET['id'])) {
-    $id = mysql_real_escape_String($_GET['id']);
-    $result = mysql_query("SELECT * FROM catalog_albums WHERE id='" . $id . "'");
-    $row = mysql_fetch_array($result);
+	if (isset($_GET['id'])) {
+	    $id = mysql_real_escape_String($_GET['id']);
+	    $result = mysql_query("SELECT * FROM catalog_albums WHERE id='" . $id . "'");
+	    $row = mysql_fetch_array($result);
 
-    //Update cache data if out of data
-    //FIX THIS CODE BEFORE RELEASE! get_similar should be "threaded"!
-    if ($row[16] < date('Y-m-d', strtotime('-1 month'))) {
-        //passthru("/usr/bin/php5 /var/www/arcums/catalog/get_similar.php '" . $row[5] . "' >> /var/www/arcums/catalog/similar.log 2>&1 &");
-		    $query = "DELETE FROM catalog_similar WHERE artist='$row[5]'";
-		    mysql_query($query) or die(mysql_error());
-		    $similar_xml = get_similar($row[5], 10);
-		    if ($similar_xml) {
-		        foreach ($similar_xml->similarartists->artist as $sartist) {
-		            $art = mysql_real_escape_string($sartist->name);
-		            $query = "INSERT INTO catalog_similar VALUES('$row[5]','$art')" or die(mysql_error());
-		            mysql_query($query) or die(mysql_error());
-		        }
-		    }
-		    $query = "UPDATE catalog_albums SET similar_cache_date=NOW() WHERE artist = '$row[5]'";
-		    mysql_query($query) or die(mysql_error());
-    }
-    
-    if ($row[10] == "" && $row[7] != "") {
-        $row[10] = findImage($row[7]);
-    }
-    
-    if ($row[10] == "NONE" || $row[10] == "") {
-        
-        if ($row[14] == 1) {
-            $row[10] = '../images/vinyl.png';
-        }
-        else {
-            $row[10] = '../images/CD.PNG';
+	    //Update cache data if out of data
+	    //FIX THIS CODE BEFORE RELEASE! get_similar should be "threaded"!
+	    if ($row[16] < date('Y-m-d', strtotime('-1 month'))) {
+		//passthru("/usr/bin/php5 /var/www/arcums/catalog/get_similar.php '" . $row[5] . "' >> /var/www/arcums/catalog/similar.log 2>&1 &");
+			    $query = "DELETE FROM catalog_similar WHERE artist='$row[5]'";
+			    mysql_query($query) or die(mysql_error());
+			    $similar_xml = get_similar($row[5], 10);
+			    if ($similar_xml) {
+				foreach ($similar_xml->similarartists->artist as $sartist) {
+				    $art = mysql_real_escape_string($sartist->name);
+				    $query = "INSERT INTO catalog_similar VALUES('$row[5]','$art')" or die(mysql_error());
+				    mysql_query($query) or die(mysql_error());
+				}
+			    }
+			    $query = "UPDATE catalog_albums SET similar_cache_date=NOW() WHERE artist = '$row[5]'";
+			    mysql_query($query) or die(mysql_error());
+	    }
+	    
+	    if ($row[10] == "" && $row[7] != "") {
+		$row[10] = findImage($row[7]);
+	    }
+	    
+	    if ($row[10] == "NONE" || $row[10] == "") {
+		
+		if ($row[14] == 1) {
+		    $row[10] = '$root/themes/$curtheme/admin_images/vinyl.png';
+		}
+		else {
+		    $row[10] = "$root/themes/$curtheme/admin_images/CD.PNG";
         }
     }
     echo "<center><table class='catalogtablemain'><tr><td align='center'>";
     echo '<img width=/"250/" src="' . $row[10] . '"></img><br>';
     
     if (isset($_SESSION['dj_logged_in'])) {
-        echo "<br><a href=report.php?id=" . $id . "><img alt='Report' width='20' src='../../themes/$curtheme/admin_images/uhoh.png'></a> ";
+        echo "<br><a href=report.php?id=" . $id . "><img alt='Report' width='20' src='$root/themes/$curtheme/admin_images/uhoh.png'></a> ";
     }
     
     if (isset($_SESSION['dj_logged_in']) && $user_info['permissions'] >= 2) {
-        echo " <a href=edit.php?id=" . $id . "><img alt='Edit' width='20' src='../../themes/$curtheme/admin_images/edit-icon.png'></a>";
-        echo " <a href=remove.php?id=" . $id . "><img alt='Delete' width='20' src='../../themes/$curtheme/admin_images/delete-icon.png'></a>";
+        echo " <a href=edit.php?id=" . $id . "><img alt='Edit' width='20' src='$root/themes/$curtheme/admin_images/edit-icon.png'></a>";
+        echo " <a href=remove.php?id=" . $id . "><img alt='Delete' width='20' src='$root/themes/$curtheme/admin_images/delete-icon.png'></a>";
         echo "<br>";
     }
     echo '</td><td>';
@@ -156,7 +156,7 @@ if (isset($_GET['id'])) {
         echo "<input type=\"hidden\" name=\"trackid\" value=\"$track_row[0]\">";
         echo "<input type=\"hidden\" name=\"listeners\" value=\"$listeners\">";
         echo "<input type=\"hidden\" name=\"requested\" value=\"0\">";
-        echo "<input type=\"image\" class=\"smallimg\" width=12 src=\"../../themes/$curtheme/admin_images/play.png\">";
+        echo "<input type=\"image\" class=\"smallimg\" width=12 src=\"$root/themes/$curtheme/admin_images/play.png\">";
         echo "</form>";
         echo "<br>";
     }

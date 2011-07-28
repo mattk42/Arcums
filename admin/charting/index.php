@@ -22,14 +22,12 @@ if(username_exists($session_username))
 {
 
 require("../include/header.php");
-$query2="SELECT name FROM djs WHERE djname = '$anotherdj'";
-$result2 = mysql_query ($query2);
-$anotherdj = mysql_real_escape_string($_GET['anotherdj']);
-$getdate = mysql_real_escape_string($_GET['datelist']);
-$query="SELECT DISTINCT date FROM playlist WHERE dj = '$anotherdj' ORDER by date DESC";
-$result = mysql_query ($query);
-$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
-$getgenre = mysql_real_escape_string($_GET['genre']);
+if(isset($_GET['catnumber'])){
+	$getcatnumber = mysql_real_escape_string($_GET['catnumber']);
+}
+if(isset($_GET['catnumber'])){
+	$getgenre = mysql_real_escape_string($_GET['genre']);
+}
 echo "
 <div align=\"center\">
 
@@ -37,7 +35,7 @@ echo "
 <table class=\"welcomebar\">
 <tr>
 <td class=\"date\">
-Last 7 Days of New Music: $getgenre > $getcatnumber
+Charting 
 </td>
 <td class=\"loggedin\">
 You're logged in as "; echo $session_username;
@@ -59,7 +57,7 @@ echo "
 <form method='get' action='index.php'>
 ";
 
-$query="SELECT prefix,name FROM catalog_categories ORDER by genres ASC";
+$query="SELECT prefix,name FROM catalog_categories ORDER BY name";
 $result = mysql_query ($query);
 echo "<td><select name=\"genre\">";
 while($nt=mysql_fetch_array($result)){
@@ -83,7 +81,6 @@ echo '</select></td>
     <input type="submit" name="button" id="button" value="Export" />
 </form></td></tr>
 <tr>
-<td colspan="4">Select a starting number.</td>
 
 </table>
 
@@ -109,11 +106,17 @@ echo "
 
 	  </tr>
 ";
-$query = "SELECT artist, album, section, sectionnumber, date, COUNT(sectionnumber) AS timesplayed FROM playlist WHERE section = '$getgenre' AND sectionnumber > $getcatnumber AND date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY section, sectionnumber ORDER BY section ASC, timesplayed DESC";
-$playlist = mysql_query($query) or die(mysql_error());
-$numofrows = mysql_num_rows($playlist);
 
-if(mysql_num_rows($playlist) > 0)
+if(isset($getcatnumber) && isset($getgenre)){
+	$query = "SELECT artist, album, section, sectionnumber, date, COUNT(sectionnumber) AS timesplayed FROM playlist WHERE section = '$getgenre' AND sectionnumber > $getcatnumber AND date >= DATE_SUB(CURDATE(), INTERVAL 7 DAY) GROUP BY section, sectionnumber ORDER BY section ASC, timesplayed DESC";
+	$playlist = mysql_query($query) or die(mysql_error());
+	$numofrows = mysql_num_rows($playlist);
+}
+else{
+	$numofrows=0;
+}
+
+if($numofrows > 0)
 {
 //create a loop, because there are rows in the DB
 

@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once ("../config.php");
 ?>
 <link href="../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
@@ -28,7 +29,7 @@ function show_table() {
         $ord = 'username';
     }
     
-    if ($_GET['dir'] == "ASC") {
+    if (isset($_GET['dir']) && $_GET['dir'] == "ASC") {
         $dir = 'ASC';
         $dir_link = 'DESC';
     }
@@ -44,7 +45,7 @@ function show_table() {
     
     while ($row = mysql_fetch_assoc($res)) {
         echo "<tr>";
-        echo "<td><img src='" . $root . "/arcums/profile/photos/" . $row['photo'] . "' height='70'></td>";
+        echo "<td><img src='" . $root . "/admin/profile/photos/" . $row['photo'] . "' height='70'></td>";
         echo "<td>" . $row['username'] . "</td>";
         echo "<td>" . $row['name'] . "</td>";
         echo "<td>" . $row['djname'] . "</td>";

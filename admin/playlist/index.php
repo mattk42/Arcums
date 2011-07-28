@@ -1,9 +1,11 @@
 <?php session_start();
-$_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
-require("../../config.php");
-require("../include/functions.php");
-require("../include/stream_functions.php");
+	$_SESSION['currentpage'] = $_SERVER['REQUEST_URI'];
+	require("../../config.php");
+	require("../include/functions.php");
+	require("../include/stream_functions.php");
+	require("../include/header.php");
 ?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -39,14 +41,11 @@ if (validate_required(album,"The album name must be filled out!")==false)
 </script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ARCUMS 2.0</title>
-<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
+<title><?php echo $stationname; ?> Admin</title>
+<link href="<?php echo $root; ?>/themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-<?php
-require("../include/header.php");
-?>
 <?php
 
 
@@ -78,13 +77,13 @@ NOTICE: We have started charting again which allows us to keep our web stream le
 <table class="welcomebar">
 <tr>
 <td class="date">
-WUPX Playlist for '; echo date("m/d/y");
+Playlist for '; echo date("m/d/y");
 echo '
 </td>
 <td class="loggedin">
 You\'re logged in as '; echo $session_username;
 echo '
-<a href="' . $root_url . 'login/logout.php">[logout]</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="' . $root . '/login/logout.php">[logout]</a>&nbsp;&nbsp;&nbsp;&nbsp;
 </td>
 </tr>
 </table>
@@ -175,7 +174,7 @@ echo "
 $todaystart = date('Y-m-d 00:00:00');
 $todayend = date('Y-m-d 23:59:59');
 
-$query = "SELECT * FROM playlist WHERE dj_id = '$session_djid' AND datetime > '$todaystart' AND datetime < '$todayend' ORDER by id DESC";
+$query = "SELECT * FROM playlist WHERE dj_id = '$session_djid' AND datetime > '$todaystart' AND datetime < '$todayend' ORDER by auto DESC";
 $playlist = mysql_query($query) or die(mysql_error());
 $numofrows = mysql_num_rows($playlist);
 

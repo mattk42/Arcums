@@ -1,6 +1,6 @@
 <?php
 require_once("config.php");
-require_once("arcums/include/functions.php");
+require_once("admin/include/functions.php");
 include("header.php");
 
 echo "<center>";

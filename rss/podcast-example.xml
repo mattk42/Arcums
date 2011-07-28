@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+    xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" 
+    xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Radio X Podcast</title>
+        <description>WUPX is Northern Michigan University&apos;s student-run college radio station.  Our podcast offers recorded On-Air interviews and performances.</description>
+        <link>http://www.wupx.com</link>
+        <copyright>WUPX</copyright>
+        <language>en-us</language>
+        <lastBuildDate>Thu, 17 Apr 2008 17:55:06 -0400</lastBuildDate>
+        <managingEditor>itdirector@wupx.com (WUPX IT Director)</managingEditor>
+        <pubDate>Thu, 17 Apr 2008 17:55:06 -0400</pubDate>
+        <webMaster>itdirector@wupx.com (WUPX IT Director)</webMaster>
+        <itunes:subtitle>WUPX Marquette 91.5 FM</itunes:subtitle>
+        <itunes:summary>Radio X is Northern Michigan University&apos;s student-run college radio station.  Our podcast offers recorded On-Air interviews and performances.</itunes:summary>
+        <itunes:author>Radio X</itunes:author>
+        <itunes:owner>
+            <itunes:name>WUPX IT Director</itunes:name>
+            <itunes:email>itdirector@wupx.com</itunes:email>
+        </itunes:owner>
+        <itunes:category text="Music"/>
+        <itunes:category text="Education">
+            <itunes:category text="Higher Education"/>
+        </itunes:category>
+        <itunes:keywords>WUPX, Northern Michigan University, NMU</itunes:keywords>
+        <itunes:image href="http://www.wupx.com/images/podcastlogo.jpg"/>
+        <itunes:explicit>no</itunes:explicit>
+        <itunes:block>no</itunes:block>
+        <atom:link href="http://www.wupx.com/rss/podcast.xml" rel="self" type="application/rss+xml" />
+
+        <item>
+            <title>Let&apos;s Chat with Dr. Les Wong</title>
+            <description>WUPX interviews Northern Michigan University President Dr. Les Wong.</description>
+            <enclosure url="http://www.wupx.com/media/audio/LesWongInterview.mp3" length="55721258" type="audio/mpeg"/>
+            <guid isPermaLink="true">http://www.wupx.com/media/audio/LesWongInterview.mp3</guid>
+            <pubDate>Wed, 24 Oct 2007 20:05:58 -0400</pubDate>
+        </item>
+    </channel>
+</rss>

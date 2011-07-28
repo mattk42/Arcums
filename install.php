@@ -3,7 +3,7 @@
 if (isset($_POST['dbhost'])) {
 
 	//check for required data
-	if(empty($_POST['dbhost'])|empty($_POST['dbuser'])|empty($_POST['dbname'])|empty($_POST['dbpass'])|empty($_POST['dbpref'])|empty($_POST['aroot'])|empty($_POST['auser'])|empty($_POST['apass'])|empty($_POST['aemail'])|empty($_POST['bdisp'])){
+	if(empty($_POST['dbhost'])|empty($_POST['dbuser'])|empty($_POST['dbname'])|empty($_POST['dbpass'])|empty($_POST['dbpref'])|empty($_POST['aroot'])|empty($_POST['auser'])|empty($_POST['apass'])|empty($_POST['aemail'])|empty($_POST['theme'])|empty($_POST['bdisp'])){
 		die("Please go back and fill in all requires fields.");
 	}
 
@@ -11,15 +11,17 @@ mysql_connect($_POST['dbhost'], $_POST['dbuser'], $_POST['dbpass']) or die("Erro
 	echo "<b>Installing:</b><br>";
 
 	//Escape all of the user input.
-    $host = mysql_real_escape_string($_POST['dbhost']);
+   	$host = mysql_real_escape_string($_POST['dbhost']);
 	$user = mysql_real_escape_string($_POST['dbuser']);
-    $pass = mysql_real_escape_string($_POST['dbpass']);
-    $db = mysql_real_escape_string($_POST['dbname']);
-    $pref = mysql_real_escape_string($_POST['dbpref']);
+    	$pass = mysql_real_escape_string($_POST['dbpass']);
+   	$db = mysql_real_escape_string($_POST['dbname']);
+   	$pref = mysql_real_escape_string($_POST['dbpref']);
+	$station = mysql_real_escape_string($_POST['station']);
    	$root = mysql_real_escape_string($_POST['aroot']);
 	$admin_user = mysql_real_escape_string($_POST['auser']);
 	$admin_pass = mysql_real_escape_string($_POST['apass']);
 	$admin_email = mysql_real_escape_string($_POST['aemail']);
+	$theme = mysql_real_escape_string($_POST['theme']);
 	$amazonpub = mysql_real_escape_string($_POST['amazonpub']);
 	$amazonpri = mysql_real_escape_string($_POST['amazonpri']);
 	$audioscrob = mysql_real_escape_string($_POST['audioscrobkey']);
@@ -222,6 +224,8 @@ $cf = "
 //General Config
 \$admin_email = \"$admin_email\";
 \$root = \"$root\";
+\$curtheme = \"$theme\";
+\$stationname = \"$station\";
 
 //Catalog Config
 \$catalog_report_emails=array(\"$admin_email\");
@@ -270,7 +274,7 @@ else {
 <script language="JavaScript" type="text/javascript">
 	function checkform(form){
 	var error=false;
-	var required = [form.dbhost,form.dbuser,form.dbname,form.dbpass,form.dbpref,form.aroot,form.auser,form.apass,form.aemail,form.bdisp];
+	var required = [form.dbhost,form.dbuser,form.dbname,form.dbpass,form.dbpref,form.station,form.aroot,form.auser,form.apass,form.aemail,form.theme,form.bdisp];
 	for(var i in required)
 	{
 		if(required[i].value==''){
@@ -309,10 +313,12 @@ else {
 	Databse Name:*<input name='dbname'><br>
 	Table Prefix:*<input name='dbpref'><br><br>
 	<b>Application Settings:</b><br>
+	Station Name:*<input name='station'><br>
 	Application Root:*<input name='aroot' value='<?php echo "http://" . $_SERVER["HTTP_HOST"] . str_replace("/install.php","",$_SERVER["REQUEST_URI"]) ?>'><br>
 	Admin Username:*<input name='auser'><br>
 	Admin Password:*<input type='password' name='apass'><br>
-	Admin email:*<input name='aemail'><br><br>
+	Admin email:*<input name='aemail'><br>
+	Application Theme:*<input name='theme' value='default'><br><br>
 	<b>Blog Settings</b><br>
 	Display limit:*<input type='number' name='bdisp'><br><br>
 	<b>API Key:</b><br>

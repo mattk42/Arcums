@@ -27,7 +27,7 @@ if (isset($_SESSION['dj_logged_in'])) {
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>ARCUMS 2.0</title>
-<link href="../../themes/<?php echo $curtheme;?>/admin.css" rel="stylesheet" type="text/css" />
+<link href="'.$root.'/themes/'.$curtheme.'/admin.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -160,7 +160,7 @@ You\'re logged in as ';
                 $label = mysql_real_escape_string($_POST['label']);
                 $tracknumber = mysql_real_escape_string($_POST['tracknumber']);
                 mysql_query("UPDATE playlist SET artist = '$artist', song = '$song', album = '$album', label = '$label', section = '$section', sectionnumber = '$sectionnumber', tracknumber = '$tracknumber', requested = '$requested' WHERE auto=$autoget");
-                echo '<meta http-equiv="REFRESH" content="0;url=http://www.wupx.com/arcums/playlist/index.php"></HEAD>';
+                echo '<meta http-equiv="REFRESH" content="0;url='.$root.'/admin/playlist/index.php"></HEAD>';
                 exit;
             }
         }

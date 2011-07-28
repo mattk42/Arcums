@@ -5,8 +5,12 @@
 	// 		-- if type=dj&dj=<djname> is supplied, it will return the last 10 songs played for that dj username
 	// 				-- if limit=<number> is supplied, it returns that many songs; default is 10.  Must be between 1 and 25
 
-	$type = mysql_real_escape_string($_GET['type']);
-
+	if(isset($_GET['type'])){
+		$type = mysql_real_escape_string($_GET['type']);
+	}
+	else{
+		$type="";
+	}
 	$options = array("options" =>	array("min_range" => 1, "max_range" => 25));
 	$limit = filter_input(INPUT_GET, 'limit', FILTER_VALIDATE_INT, $options);
 

@@ -40,7 +40,7 @@ echo "</select> <input type=\"submit\" value=\"View\"></form>";
 ?>
 
 &nbsp;&nbsp;&nbsp;<a href="<? echo $root; ?>/admin/playlist/index.php">Playlist</a> | <a href="<? echo $root; ?>/admin/profile/">My Profile</a>
-| <a href="<? echo $root; ?>/admin/downloads/">Record Show</a> | <a href="<? echo $root; ?>/admin/blog/">Blog</a> | <a href="<? echo $root; ?>/admin/catalog/">Catalog</a>
+| <a href="<? echo $root; ?>/admin/blog/">Blog</a> | <a href="<? echo $root; ?>/admin/catalog/">Catalog</a>
 
 
 </div></td></tr></table></div>
@@ -62,9 +62,9 @@ if (mysql_num_rows($get_info) > 0) {
         echo '
 		<table width="735" align="center">
 		<tr><td class="headers" align="center">Genre Director Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</td></tr>
 		</table>
 	';
@@ -74,12 +74,12 @@ if (mysql_num_rows($get_info) > 0) {
         echo '
 		<table width="735" align="center">
 		<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</td></tr>
 		</table>
 	';
@@ -89,13 +89,13 @@ if (mysql_num_rows($get_info) > 0) {
         echo '
 		<table width="735" align="center">
 		<tr><td class="headers" align="center">Staff Menu: &nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
-		<a href="../user_control.php">User Control</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/profile/staff_edit.php">Staff Profile </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/charting/index.php">Arcums Charting </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/charting/tracker.php">CD Tracker </a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/webcharting/index.php">WebCharting</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/catalog/menu.php">Catalog Admin</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/events/index.php">Events</a>&nbsp;&nbsp;&nbsp;&nbsp;
+		<a href="'.$root.'/admin/user_control.php">User Control</a>&nbsp;&nbsp;&nbsp;&nbsp;
 		</td></tr>
 		</table>
 	';

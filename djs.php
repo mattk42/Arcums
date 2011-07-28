@@ -3,10 +3,11 @@ include_once ("header.php");
 require_once ("config.php");
 
 //echo some styles to spice it up...
-echo "<h2>Radio X DJs</h2><br \>
+echo "<h2> $stationname DJs</h2><br \>
 <a href=\"http://www.wupx.com/arcums\">DJ Login</a><br />";
-$day = mysql_real_escape_string($_GET['day']);
-
+if(isset($_GET['day'])){
+	$day = mysql_real_escape_string($_GET['day']);
+}
 if (empty($day) || $day == "All") {
     $day = "%";
 }
@@ -15,7 +16,7 @@ if (empty($day) || $day == "All") {
 <form name='dayselect' method='get'>
 	<table width='100%'><tr><td valign='top'>
 				
-		<b>Now Viewing: <? echo $_GET['day']; ?></b></td><td align='right' valign='top'>
+		<b>Now Viewing: <? echo $day; ?></b></td><td align='right' valign='top'>
 		Select Day: <select style="font-size:12px;color:#006699;font-family:verdana;background-color:#ffffff;" name="day">
 			<option value="All">All</option>
 			<option value="Monday">Monday</option>
