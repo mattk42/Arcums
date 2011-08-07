@@ -6,46 +6,37 @@
   		</div>
   		<div id="center">
   			<div class="content">
-					<div class="sidebarTitle">
-						<h3>On Air</h3>
-					</div>
-  				<div id="onAir" class="sidebar">
-						<ul>
-							<?php require "schedule/preview.php" ?>
-					</ul>
-					</div>
-					<br />
-					<div class="sidebarTitle">
-						<h3><a href="<?php echo $root?>/charter.php">Last Played</a></h3>
-					</div>
-  				<div id="lastPlays" class="sidebar">
-						<?php require "playlists/playlists.php" ?>
-					</div>
-					<br />
-  				<div class="sidebarTitle">
-						<h3>Request a Song</h3>
-					</div>
-  				<div id="songRequest" class="sidebar">
-						<ul>
-						</ul>
-					</div>
-	<br />
-  				<div class="sidebarTitle">
-						<h3>Podcast <a href="<?php echo $root; ?>/rss/podcast.xml"><img src="<?php echo $root; ?>/themes/<?php echo $curtheme; ?>/images/rss.png" alt="RSS Feed" style="float: center;" /></a></h3>
-					</div>
-  				<div id="songRequest" class="sidebar">
+		<?php		
+			$dir = "/var/www/arcums/sidebar/";
 
-
-
-
-<?php include "podcast.php"; ?>
-
-
-
-
-					</div>
-					<br />
-	  	  </div>
+// Open a known directory, and proceed to read its contents
+$dir_syntax_regex="/\d+_.*/";
+if (is_dir($dir)) {
+    $files = scandir($dir);
+        foreach ($files as $file) {
+       		if (filetype($dir.$file)=='dir' && preg_match($dir_syntax_regex,$file)){
+			if(is_file($dir.$file."/title.html")){
+				$title=file_get_contents($dir.$file."/title.html");
+			}
+			else{
+				$title=preg_replace("/\d+_/","",$file);
+				$title=preg_replace("/_/"," ",$title);
+			}	
+			echo '<div class="sidebarTitle">
+                                                <h3>'.$title.'</h3>
+                                        </div>
+                                <div id="onAir" class="sidebar">
+                                                <ul>';
+                                                        require "$dir$file/index.php"; 
+                                       echo' </ul>
+                                        </div>
+                                        <br />';
+		}
+       	 
+	}
+}
+	  	?>	 
+		 </div>
 	  	  <br />
 		  </div>
   	</div>

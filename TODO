@@ -1,4 +1,8 @@
-Fix "get_similar" call in catalog/view.php.   Right now it is called via exec.
+**** FIX THE DEFAULT SQL LAYOUT TO INCLUDE blog_blogs table
+**** Fix blog permissions and post pages
+
+
+fix "get_similar" call in catalog/view.php.   Right now it is called via exec.
 Schedule Page - Management, sql tables.
 Portal management ???
 clean up all code

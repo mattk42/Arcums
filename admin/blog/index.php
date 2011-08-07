@@ -38,10 +38,12 @@ echo '
 	echo "<br><font size=\"5\"> WUPX BLOG</font><br>";
 	echo "<font size=\"2\">The blog is up and ready to post to. You are responsible for the content of your own posts.</td></tr><tr bgcolor='black' align='center'><td>";
 	echo "<a href=\"post.php\">Add New Blog Post</a><br>";
-	echo "<a href=\"view.php?type=0\">Edit DJ Blog</a><br>";
-if($user_info['permissions'] > 1){
-	echo "<a href=\"view.php?type=1\">Edit E-staff Blog</a><br>";
-}
+
+        $query="SELECT id,name FROM blog_blogs";
+        $result = mysql_query($query) or die (mysql_error());
+	while($row=mysql_fetch_row($result)){
+		echo "<a href=\"view.php?blog=$row[0]\">Edit $row[1]</a><br>";
+	}
 	echo "</td></tr></table></center>";
 
 

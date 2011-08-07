@@ -24,42 +24,27 @@ function generateNav() {
             "title" => "Go to the main page",
             "url" => "$root/index.php"
         ) ,
-        array(
-            "pageName" => "DJ Blog",
-            "title" => "Read our DJ blog",
-            "url" => "$root/blog/view.php?type=0"
-        ) ,
-        array(
-            "pageName" => "Schedule",
-            "title" => "See our show schedule",
-            "url" => "$root/schedule/index.php"
-        ) ,
-        array(
-            "pageName" => "DJs",
-            "title" => "View DJ profiles",
-            "url" => "$root/djs.php"
-        ) ,
-        array(
-            "pageName" => "Staff",
-            "title" => "View E Staff profiles and office hours",
-            "url" => "$root/estaff.php"
-        ) ,
-        array(
-            "pageName" => "Media",
-            "title" => "Check out our popular wallpapers and other media",
-            "url" => "$root/media.php"
-        ) ,
-        array(
-            "pageName" => "About Us",
-            "title" => "About Radio X",
-            "url" => "$root/about.php"
-        ) ,
-        array(
-            "pageName" => "Contact Us",
-            "title" => "Contact",
-            "url" => "$root/contact.php"
-        )
     );
+	$query="SELECT id,name FROM blog_blogs WHERE hide='0'";
+	$result = mysql_query($query) or die (mysql_error());
+	while($row=mysql_fetch_row($result)){
+		$links[]=array(
+			"pageName"=>$row[1],
+			"title"=>$row[1],
+			"url"=>"$root/blog/view.php?blog=$row[0]"
+		);
+	}
+	$dir = '/var/www/arcums/pages/';
+	$files = scandir($dir);
+	foreach ($files as $file){
+		if(filetype($dir.$file)=='dir' && preg_match("/\d+_.*/",$file)){
+		$links[]=array(
+				"pageName"=>preg_replace("/\d+_/","",$file),
+				"title"=>$file,
+				"url"=>"$root/pages/$file"
+			);
+		}
+	}	
     $list_html = "<ul>\n";
     
     //create the html for the link bar
@@ -81,7 +66,7 @@ function displayNav() {
     </div>
 		
     <div id="showBanner">
-    	<?php include "rotate.php"; ?>
+    	<?php include "addons/banner.php"; ?>
     </div>
   </div>
 

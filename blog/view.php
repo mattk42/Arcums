@@ -1,16 +1,15 @@
 <?php
 	include("../header.php");
-	require_once("../config.php");	
 	//tags that are allowed to be displayed (used with strip_tags)
 	$allowable_post="<b><a><br><br /><strong><sup><sub><p><blockquote><font><img><ol><li><ul><code><cite><em><h1><h2><h3><h4><h5><h6><address><span>";
 	$allowable_comment="<a>";	
 
 	//cleanse all of the $_GET variables
-	if(!isset($_GET['type'])){
-		$type = 1;
+	if(!isset($_GET['blog'])){
+		$blog = 1;
 	}
 	else{
-		$type = mysql_real_escape_string($_GET['type']);
+		$blog = mysql_real_escape_string($_GET['blog']);
 	}
 	
 	//GET variables to determine what page we are on and how many posts to show.
@@ -73,23 +72,23 @@
 	}
 	
 	//get a count of the posts, for calculating prev and next buttons
-	$query=mysql_query("SELECT * from blog_posts WHERE type='" . $type ."' ORDER BY post_time") or die("Post Query Failed");
+	$query=mysql_query("SELECT * from blog_posts WHERE blog_id='" . $blog ."' ORDER BY post_time") or die("Post Query Failed");
 	$count=mysql_num_rows($query);
 	
 	if(isset($_GET['report'])){
 		$report_id = mysql_real_escape_string($_GET['report']);
 	}
 	if(empty($post_number)){
-		$query=mysql_query("SELECT * from blog_posts WHERE hide='0' and type='" . $type ."' ORDER BY post_time DESC LIMIT ". $start .",". $limit  ) or die(mysql_error());
+		$query=mysql_query("SELECT * from blog_posts WHERE hide='0' and blog_id='" . $blog ."' ORDER BY post_time DESC LIMIT ". $start .",". $limit  ) or die(mysql_error());
 		while($row = mysql_fetch_array($query)){
 			echo "<br><br>";
 			display_post($row,False);	
 		}//end while
 			if($start>0){
-				echo "<center><a href=\"?type=".$type."&start=". $prev . "\"><-Previous </a></center>";
+				echo "<center><a href=\"?blog=".$blog."&start=". $prev . "\"><-Previous </a></center>";
 			}
 			if($count > $next){
-				echo "<center><a href=\"?type=".$type."&start=". $next . "\">Next-></a></center>";
+				echo "<center><a href=\"?blog=".$blog."&start=". $next . "\">Next-></a></center>";
 			}
 	}//end if
        else{

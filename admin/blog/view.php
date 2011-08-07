@@ -21,23 +21,27 @@ if(isset($_SESSION['dj_logged_in'])){
 		echo "<center><table width='55%' bgcolor='#000000' ><TR><TD><font color='white'>";
 
 		//which post to start on
-		$start = mysql_real_escape_string($_GET['start']);
-
+		if(isset($_GET['start'])){
+			$start = mysql_real_escape_string($_GET['start']);
+		}
+		else{
+			$start=0;
+		}
 		//tags that are allowed to be displayed (used with strip_tags)
 		$allowable_post="<b><a><br><br /><strong><sup><sub><p><blockquote><font><img><ol><li><ul><code><cite><em><h1><h2><h3><h4><h5><h6><address><span>";
 		$allowable_comment="<a>";	
 
 		//cleanse all of the $_GET variables
-		if(!isset($_GET['type'])){
-			$type = 1;
+		if(!isset($_GET['blog'])){
+			$blog = 1;
 		}
 		else{
-			$type = mysql_real_escape_string($_GET['type']);
+			$blog = mysql_real_escape_string($_GET['blog']);
 		}
 	
 		//so that DJs can't edit the estaff blog
 		if($user_info['permissions']<1){
-			$type=0;
+			$blog=0;
 		}
 
 		if($start==""){
@@ -74,11 +78,11 @@ if(isset($_SESSION['dj_logged_in'])){
 		}
 
 		//get count of posts for calculating prev and next buttons
-		$query=mysql_query("SELECT * from blog_posts WHERE type='" . $type ."' ORDER BY post_time");
+		$query=mysql_query("SELECT * from blog_posts WHERE blog_id='" . $blog ."' ORDER BY post_time");
 		$count=mysql_num_rows($query);
 
 		if(!isset($post_number)){
-			$query=mysql_query("SELECT * from blog_posts WHERE type='" . $type ."' ORDER BY post_time DESC LIMIT ". $start . "," .$limit  );
+			$query=mysql_query("SELECT * from blog_posts WHERE blog_id='" . $blog ."' ORDER BY post_time DESC LIMIT ". $start . "," .$limit  );
 			while($row = mysql_fetch_array($query)){
 				echo "<br><br>";
 	
@@ -93,21 +97,21 @@ if(isset($_SESSION['dj_logged_in'])){
 				//display post
 				echo "<font size=\"6\"><b>" . $row['title'] . "</b></font>";
 				if($user_info['permissions']>1 || $user_info['id'] == $row['dj_id']){
-					echo"<a href='post.php?EDIT=".$row['id']."&type=" . $type . "'>Edit</a>" . " <a href=\"post.php?DELETE=".$row['id']."\">Delete</a>";
+					echo"<a href='post.php?EDIT=".$row['id']."&blog=" . $blog . "'>Edit</a>" . " <a href=\"post.php?DELETE=".$row['id']."\">Delete</a>";
 				}
 				echo"<br><b>DJ:</b> <a href=\"../arcums/profile/view_profile.php?member_id=" . $row['dj_id']. "\">". $dj_row['djname'] . "</a>(" . $dj_row['name'] . ")" . " | <b>Time:</b> "  . $row['post_time'] . "<br><br>" . stripslashes(strip_tags($row['text'],$allowable_post));
-				echo "<br><a href=\"?post=" . $row['id'] ."&type=" . $type . "\">Comments(" . $comment_count . ")</a><br><br>";
+				echo "<br><a href=\"?post=" . $row['id'] ."&blog=" . $blog . "\">Comments(" . $comment_count . ")</a><br><br>";
 		                echo "<hr width=\"100%\" size=10 color=\"#43727B\">";
 			}//end while
 				if($start>0){
-					echo "<center><a href=\"?type=".$type."&start=". $prev . "\"><-Previous </a></center>";
+					echo "<center><a href=\"?blog=".$blog."&start=". $prev . "\"><-Previous </a></center>";
 				}
 				if($count > $next){
-					echo "<center><a href=\"?type=".$type."&start=". $next . "\">Next-></a></center>";
+					echo "<center><a href=\"?blog=".$blog."&start=". $next . "\">Next-></a></center>";
 				}
 		}//end if
 	       else{
-		        $query=mysql_query("Select * from blog_posts where id='" . $post_number . "' AND type='" . $type . "'");
+		        $query=mysql_query("Select * from blog_posts where id='" . $post_number . "' AND blog_id='" . $blog . "'");
 		        $row = mysql_fetch_array($query);
 		               
 			 //get the name of the dj that posted the post
@@ -131,15 +135,15 @@ if(isset($_SESSION['dj_logged_in'])){
 			while($comment_row = mysql_fetch_array($comments_query)){
 				if($comment_row['hide']!=0){
 					echo "<font color='RED'>";
-					$link = " <a href='?unhide=" . $comment_row['id']. "&post=" . $row['id'] . "&type=" . $type ."'>Unhide</a>";
+					$link = " <a href='?unhide=" . $comment_row['id']. "&post=" . $row['id'] . "&blog=" . $blog ."'>Unhide</a>";
 				}
 				else if($comment_row['valid']==0){
 					echo "<font color='BLUE'>";
-					$link = " <a href='?hide=" . $comment_row['id']."&post=" . $row['id'] . "&type=" . $type . "'>Hide</a>";
+					$link = " <a href='?hide=" . $comment_row['id']."&post=" . $row['id'] . "&blog=" . $blog . "'>Hide</a>";
 				}
 				else{
 					echo "<font color='GREEN'";
-					$link = " <a href='?hide=" . $comment_row['id']."&post=" . $row['id'] . "&type=" . $type ."'>Hide</a>";
+					$link = " <a href='?hide=" . $comment_row['id']."&post=" . $row['id'] . "&blog=" . $blog ."'>Hide</a>";
 				}
 				echo "<b><font size=\"3\">" . $comment_row['title'] . "</font></b>" . $link . "<font size=\"1\"> Reported " . $comment_row['reported'] . "times.<br>Name: " . $comment_row['name']  . "<br>Email: <a href=\"mailto:" . $comment_row['email'] . "\">". $comment_row['email'] ."</a><br>" . strip_tags($comment_row['text'],$allowable_comment) . "<br><br></font>";
 			}
